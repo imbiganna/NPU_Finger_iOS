@@ -109,6 +109,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D214BC4926BD1C2600C17821 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D2628E7F26A6A36900068E86 /* AppDelegate.swift */,
+				D2628E8126A6A36900068E86 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		D2628E7326A6A36800068E86 = {
 			isa = PBXGroup;
 			children = (
@@ -130,11 +139,10 @@
 		D2628E7E26A6A36900068E86 /* NPU_Life */ = {
 			isa = PBXGroup;
 			children = (
+				D214BC4926BD1C2600C17821 /* Delegate */,
 				D2758EC926ABF6EE008BD9EB /* Model */,
 				D2758EC826ABF6D6008BD9EB /* Controller */,
 				D2758EC726ABF6BB008BD9EB /* View */,
-				D2628E7F26A6A36900068E86 /* AppDelegate.swift */,
-				D2628E8126A6A36900068E86 /* SceneDelegate.swift */,
 				D2628E8826A6A36C00068E86 /* Assets.xcassets */,
 				D2628E8D26A6A36C00068E86 /* Info.plist */,
 			);

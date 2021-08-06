@@ -97,7 +97,7 @@ class CalendarViewController: UIViewController{
     
     func getCalenderList(searchItems query:String = "",queryYear year:String , queryMonth month:String){
         self.dolphinLoading.isHidden = false
-        let key = "CHANGE TO YOUR GOOGLE API KEY"
+        let key = "AIzaSyArf1_zfTJsRMz6KhIFYhOBNSKWoeoE2m0"
         let calID = "gms.npu.edu.tw_dktg99t2p2sqlvcoorpd67h7ok@group.calendar.google.com"
         let queryMoneth = "\(year)-\(month)"
         let startTime = "\(queryMoneth)-01T00:00:00Z"
