@@ -17,20 +17,31 @@ class CourseTableViewController: UIViewController {
     let weekName = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
     
     var courseView:CourseTableTableViewController?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user.course = [[Course]()]
+        self.courseView?.user = self.user
         self.title = "查課表"
         shareButton.tintColor = .white
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         barAppearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = barAppearance
-        getCourse()
+        print(self.user.course.count)
+        if self.user.course.count > 1{
+            courseView?.isInit = false
+            courseView?.height = self.tableView.frame.size.height
+            courseView?.getColor()
+            courseView?.animateTable()
+        }else{
+            user.course = [[Course]()]
+            getCourse()
+            print(self.user.course.count)
+        }
     }
     
     @IBAction func shareTable(_ sender: UIBarButtonItem) {
@@ -90,7 +101,6 @@ class CourseTableViewController: UIViewController {
                     self.user.course.append(tempdata)
                 }
                 self.user.course.remove(at: 0)
-                self.courseView?.user = self.user
                 self.courseView?.isInit = false
                 self.courseView?.getColor()
                 DispatchQueue.main.async {
@@ -118,14 +128,5 @@ class CourseTableViewController: UIViewController {
             courseView = segue.destination as? CourseTableTableViewController
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

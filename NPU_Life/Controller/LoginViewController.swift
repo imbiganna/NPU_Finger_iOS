@@ -43,7 +43,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
     @IBAction func guestMode(_ sender: Any) {
         myUser.name = "王大明"
-        myUser.stdid = "8888888888"
+        myUser.stdid = "1107000000"
         myUser.Class = "尚未登入"
         self.performSegue(withIdentifier: "goDashboard", sender: nil)
     }
@@ -54,11 +54,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     func goLogin(){
         if uidTextField.text == "" || pwdTextField.text == "" {
-            showMessage(title: "糟糕！！", message: "請輸入帳號密碼")
+            showMessage(title: "哎呀❗️", message: "你好像還沒輸入帳號或密碼呢")
         }else if uidTextField.text!.count < 10 || pwdTextField.text!.count > 10{
-            showMessage(title: "糟糕！", message: "請檢查帳號密碼格式\n密碼僅限十位")
+            showMessage(title: "糟糕❗️", message: "請檢查帳號密碼格式")
         }else if !uidTextField.text![0].isNumber && uidTextField.text![1].isNumber{
-            showMessage(title: "糟糕！", message: "暫不開放教職員登入")
+            showMessage(title: "糟糕❗️", message: "暫不開放教職員登入")
         }else
         {
             loadingView.startAnimating()
@@ -96,10 +96,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             }else{
                 let myToken = JSON(data!)
                 if myToken["error"].string! == "帳號密碼錯誤" || myToken["error"].string! == "帳號或密碼為空"{
-                    self.myUser.token = "Error"
                     DispatchQueue.main.async {
-                        self.showMessage(title: "糟糕！！", message: "帳號或密碼錯誤")
+                        self.showMessage(title: "哎呀❗️", message: "帳號或密碼錯誤\n請你再檢查看看")
                         self.loadingView.stopAnimating()
+                        return
                     }
                 }else{
                     self.myUser.token = myToken["token"].string!
@@ -186,7 +186,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     func showMessage(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "好的", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.loadingView.stopAnimating()
         self.present(alertController, animated: true, completion: nil)
@@ -216,7 +216,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             let text = textField.text!
             let len = text.count + string.count - range.length
-        
             return len<=10
     }
 

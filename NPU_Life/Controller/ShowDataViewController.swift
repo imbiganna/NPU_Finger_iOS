@@ -27,13 +27,16 @@ class ShowDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadingView.startAnimating()
         self.buttonView.layer.cornerRadius = 20
         self.buttonView.layer.masksToBounds = true
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.configureWithTransparentBackground()
         barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.standardAppearance = barAppearance
-    
+        
+        self.dataView?.user = self.myUser
+        self.dataView?.dataType = dataType
         switch dataType {
         case .Score:
             self.title = "查成績"
@@ -50,9 +53,6 @@ class ShowDataViewController: UIViewController {
         default:
             return
         }
-        
-        
-        // Do any additional setup after loading the view.
     }
     
 
@@ -63,11 +63,9 @@ class ShowDataViewController: UIViewController {
     }
     
     func getScore(){
-        self.loadingView.startAnimating()
         let url = URL(string:"https://api.nasss.ml/api/score?token=\(myUser.token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         let newURL = URLSession(configuration: .default)
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
@@ -100,8 +98,6 @@ class ShowDataViewController: UIViewController {
                     tmpScore.midScore = score["midScore"].string!
                     self.myUser.score.append(tmpScore)
                 }
-                self.dataView?.dataType = self.dataType
-                self.dataView?.user = self.myUser
                 self.dataView?.isInit = false
                 DispatchQueue.main.async {
                     self.dataView?.animateTable()
@@ -159,13 +155,14 @@ class ShowDataViewController: UIViewController {
                     self.myNoShow.append(temp)
                 }
                 self.myNoShow.remove(at: 0)
-                self.dataView?.myNoShow = self.myNoShow
-                self.dataView?.dataType = self.dataType
                 self.dataView?.isInit = false
+                self.dataView?.myNoShow = self.myNoShow
                 DispatchQueue.main.async {
                     self.labelOne.text = "曠課節數：\(noShowCount)"
                     self.labelSecond.text = "已請節數：\(canNoShowCount)"
                     self.dataView?.animateTable()
+                    self.loadingView.stopAnimating()
+
                 }
             }
         })
@@ -222,11 +219,13 @@ class ShowDataViewController: UIViewController {
                     if badRewad > 0 {
                         self.labelOne.text = "哎呀，好像有被記過了，趕快確認一下吧"
                     }else if goodReward > 0{
-                        self.labelOne.text = "哎唷！這學期有被記功，不錯麻！"
+                        self.labelOne.text = "哎唷！這學期有被記功唷！"
                     }
                     self.labelSecond.isHidden = true
                     self.labelThird.isHidden = true
                     self.dataView?.animateTable()
+                    self.loadingView.stopAnimating()
+
                 }
             }
         })
@@ -250,14 +249,5 @@ class ShowDataViewController: UIViewController {
             dataView?.dataType = self.dataType
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -33,7 +33,7 @@
                                             <constraint firstAttribute="height" constant="34" id="iUt-LN-1K6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="username"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="RuD-K1-MuF"/>
                                         </connections>
@@ -1289,7 +1289,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這是行事曆事件這是行事曆事件這是行事曆事件這是行事曆事件這是行事曆事件這是行事曆事件" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBg-PV-Dix">
                                                     <rect key="frame" x="8" y="32.333333333333343" width="289.66666666666669" height="40.666666666666657"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1448,7 +1448,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLk-VJ-fSM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4908" y="112"/>
+            <point key="canvasLocation" x="4503" y="112"/>
         </scene>
         <!--Show Data Table View Controller-->
         <scene sceneID="hd4-73-rOd">
@@ -1736,7 +1736,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ai5-Ny-bl7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5664" y="187"/>
+            <point key="canvasLocation" x="5266" y="191"/>
         </scene>
     </scenes>
     <designables>
