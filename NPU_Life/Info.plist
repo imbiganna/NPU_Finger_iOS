@@ -22,9 +22,7 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCalendarsUsageDescription</key>
-	<string>需要您的同意，才可以將提醒存入行事曆中</string>
-	<key>NSFaceIDUsageDescription</key>
+	<key>NSlocalAuthUsageDescription</key>
 	<string>使用生物識別快速登入你的校務系統</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>儲存課表！必須選擇允許所有相片才可以儲存！</string>
@@ -62,13 +60,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>

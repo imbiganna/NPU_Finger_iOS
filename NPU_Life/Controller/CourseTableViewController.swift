@@ -24,8 +24,10 @@ class CourseTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         user.course = [[Course]()]
+        self.title = "查課表"
         shareButton.tintColor = .white
         let barAppearance =  UINavigationBarAppearance()
+        barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         barAppearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = barAppearance
         getCourse()

@@ -1186,8 +1186,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vq-XD-G1i">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="idv-AS-32D">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zZR-b6-pFz"/>
                     </connections>
@@ -1365,7 +1371,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AUM-Co-vZ7">
-                                <rect key="frame" x="147.66666666666666" y="371" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="393" width="80" height="80"/>
                                 <color key="backgroundColor" red="0.1958512962" green="0.56082648040000005" blue="0.86263674499999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="SeF-eG-gXQ"/>
@@ -1378,10 +1384,10 @@
                                 </userDefinedRuntimeAttributes>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9Z-2S-RPo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="253"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="209"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yDN-cr-eCZ">
-                                        <rect key="frame" x="150" y="88" width="75.333333333333314" height="77"/>
+                                        <rect key="frame" x="150" y="66" width="75.333333333333314" height="77"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="讀取中....." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYM-av-sbT">
                                                 <rect key="frame" x="0.0" y="0.0" width="75.333333333333329" height="20.333333333333332"/>
@@ -1430,7 +1436,7 @@
                     <navigationItem key="navigationItem" id="WKm-Hr-XFe">
                         <barButtonItem key="backBarButtonItem" title="返回" id="YaF-Mv-lYK"/>
                     </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="buttonView" destination="rA7-NM-bPK" id="cR5-lv-LO3"/>

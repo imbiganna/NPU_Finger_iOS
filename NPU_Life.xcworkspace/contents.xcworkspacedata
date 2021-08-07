@@ -4,7 +4,4 @@
    <FileRef
       location = "group:/Users/biganna/Documents/LearniOS/NPU_Life/NPU_Finger.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
 </Workspace>

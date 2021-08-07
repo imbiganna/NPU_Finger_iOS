@@ -31,17 +31,21 @@ class ShowDataViewController: UIViewController {
         self.buttonView.layer.masksToBounds = true
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.configureWithTransparentBackground()
+        barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.standardAppearance = barAppearance
-
+    
         switch dataType {
         case .Score:
+            self.title = "查成績"
             getScore()
         case .NoShow:
+            self.title = "查缺曠"
             self.labelOne.text = "曠課節數：讀取中..."
             self.labelSecond.text = "已請節數：讀取中..."
             self.labelThird.isHidden = true
             getNoShow()
         case .Reward:
+            self.title = "查獎懲"
             getMyReward()
         default:
             return

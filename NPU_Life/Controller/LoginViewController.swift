@@ -15,7 +15,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var pwdTextField: UITextField!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    
+    var isFirst = true
     var myUser = User()
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -31,12 +31,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         uidTextField.delegate = self
-        initApp()
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+            self.initApp()
+        }
+        
     }
 
     @IBAction func guestMode(_ sender: Any) {
@@ -45,6 +47,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         myUser.Class = "尚未登入"
         self.performSegue(withIdentifier: "goDashboard", sender: nil)
     }
+    
     @IBAction func loginButton(_ sender: UIButton) {
         goLogin()
     }
@@ -138,7 +141,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         myTask.resume()
     }
     
-    func faceid(){
+    func localAuth(){
         let context = LAContext()
         context.localizedCancelTitle = "取消"
         var error: NSError?
@@ -153,8 +156,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         self.pwdTextField.text = self.myUser.pwd
                         self.goLogin()
                     }
+                }else{
+                    return
                 }
             }
+        }else{
+            return
         }
     }
     
@@ -168,7 +175,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             myUser.pwd = loaduser
             if let LOCALAUTH = UserDefaults.standard.object(forKey: "LOCAL_AUTH_ON") as? Bool{
                 if LOCALAUTH == true {
-                    faceid()}
+                    self.localAuth()
+                }
             }
         }
         if myUser.stdid != ""{

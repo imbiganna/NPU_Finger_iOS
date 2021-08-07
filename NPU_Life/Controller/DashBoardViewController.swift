@@ -36,6 +36,7 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         downView.layer.masksToBounds = true
         downView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         nameLabel.text = "嗨！"+user.name
@@ -44,18 +45,18 @@ class DashBoardViewController: UIViewController {
         
         if user.name != "王大明"{
             if UserDefaults.standard.object(forKey: "LOCAL_AUTH_ON") == nil {
-                let faceIDAlert = UIAlertController(title: "要啟用生物辨識快速登入嗎", message: "稍後可在設定中更改", preferredStyle: .alert)
+                let localAuthAlert = UIAlertController(title: "要啟用生物辨識快速登入嗎", message: "稍後可在設定中更改", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "好阿！", style: .default, handler: {
                     _ in
-                    self.faceid()
+                    self.localAuth()
                 })
-                faceIDAlert.addAction(UIAlertAction(title: "不要！", style: .destructive, handler: {
+                localAuthAlert.addAction(UIAlertAction(title: "不要！", style: .destructive, handler: {
                     _ in
                     self.loadSettings.updateSetting(LOCALAUTH: false, AUTOUPDATE: self.loadSettings.AUTO_UPDATE)
                 }))
-                faceIDAlert.addAction(okAction)
+                localAuthAlert.addAction(okAction)
                 DispatchQueue.main.async {
-                    self.present(faceIDAlert, animated: true, completion: nil)
+                    self.present(localAuthAlert, animated: true, completion: nil)
                 }
             }
         }
@@ -171,7 +172,7 @@ class DashBoardViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func faceid(){
+    func localAuth(){
         let context = LAContext()
         context.localizedCancelTitle = "取消"
         var error: NSError?
@@ -209,10 +210,6 @@ class DashBoardViewController: UIViewController {
         backItem.title = "返回"
         backItem.tintColor = .white
         navigationItem.backBarButtonItem = backItem
-        navigationItem.title = "test"
-        let barAppearance = UINavigationBarAppearance()
-        barAppearance.configureWithTransparentBackground()
-        UINavigationBar.appearance().scrollEdgeAppearance = barAppearance
     }
     
 }

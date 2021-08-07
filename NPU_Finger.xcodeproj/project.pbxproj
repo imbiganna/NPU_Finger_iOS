@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51B5B93BD1A7AD2588AF3D23 /* Pods_NPU_Finger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137560DB044E360C2450178E /* Pods_NPU_Finger.framework */; };
+		D214BC4B26BD24D500C17821 /* TestNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D214BC4A26BD24D500C17821 /* TestNavController.swift */; };
+		D214BC4D26BD39B200C17821 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */; };
 		D232D7AE26B7C08600864D58 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */; };
 		D232D7B026B7C0C600864D58 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */; };
 		D232D7B226B7CF7E00864D58 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7B126B7CF7E00864D58 /* Calendar.swift */; };
@@ -22,7 +25,6 @@
 		D2628E8726A6A36900068E86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2628E8526A6A36900068E86 /* Main.storyboard */; };
 		D2628E8926A6A36C00068E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2628E8826A6A36C00068E86 /* Assets.xcassets */; };
 		D2628E8C26A6A36C00068E86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2628E8A26A6A36C00068E86 /* LaunchScreen.storyboard */; };
-		D2628E9726A6B11500068E86 /* Pods_NPU_Life.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5515A38D65A94A19B9B0E144 /* Pods_NPU_Life.framework */; };
 		D2628E9B26A92F9600068E86 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2628E9A26A92F9600068E86 /* DashBoardViewController.swift */; };
 		D2628E9D26A9307100068E86 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2628E9C26A9307100068E86 /* user.swift */; };
 		D266242E26ADB3BA00C6E195 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D266242D26ADB3BA00C6E195 /* CourseTableViewController.swift */; };
@@ -42,9 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5515A38D65A94A19B9B0E144 /* Pods_NPU_Life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NPU_Life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		137560DB044E360C2450178E /* Pods_NPU_Finger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NPU_Finger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A4BFD073E613DD2B5E1D07C /* Pods-NPU_Life.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Life.debug.xcconfig"; path = "Target Support Files/Pods-NPU_Life/Pods-NPU_Life.debug.xcconfig"; sourceTree = "<group>"; };
+		6718842B19414B85EC2EA849 /* Pods-NPU_Finger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.release.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.release.xcconfig"; sourceTree = "<group>"; };
+		68192D11FD2AA90F74265059 /* Pods-NPU_Finger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.debug.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.debug.xcconfig"; sourceTree = "<group>"; };
 		6B883B1E7EBE4349155856F7 /* Pods-NPU_Life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Life.release.xcconfig"; path = "Target Support Files/Pods-NPU_Life/Pods-NPU_Life.release.xcconfig"; sourceTree = "<group>"; };
+		D214BC4A26BD24D500C17821 /* TestNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavController.swift; sourceTree = "<group>"; };
+		D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		D232D7B126B7CF7E00864D58 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 		D238297926BD08E2001D7FA1 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		D2392F6126AAAB5300B2C222 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D2392F6526AAB4C700B2C222 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D25988C026BD3B5C007C3E7C /* NPU_Finger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NPU_Finger.entitlements; sourceTree = "<group>"; };
 		D2628E7C26A6A36900068E86 /* NPU_Finger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPU_Finger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2628E7F26A6A36900068E86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2628E8126A6A36900068E86 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2628E9726A6B11500068E86 /* Pods_NPU_Life.framework in Frameworks */,
+				51B5B93BD1A7AD2588AF3D23 /* Pods_NPU_Finger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +102,7 @@
 		0E9BB2FA093DBE849AF3699F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5515A38D65A94A19B9B0E144 /* Pods_NPU_Life.framework */,
+				137560DB044E360C2450178E /* Pods_NPU_Finger.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,6 +112,8 @@
 			children = (
 				5A4BFD073E613DD2B5E1D07C /* Pods-NPU_Life.debug.xcconfig */,
 				6B883B1E7EBE4349155856F7 /* Pods-NPU_Life.release.xcconfig */,
+				68192D11FD2AA90F74265059 /* Pods-NPU_Finger.debug.xcconfig */,
+				6718842B19414B85EC2EA849 /* Pods-NPU_Finger.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -121,6 +130,7 @@
 		D2628E7326A6A36800068E86 = {
 			isa = PBXGroup;
 			children = (
+				D25988C026BD3B5C007C3E7C /* NPU_Finger.entitlements */,
 				D2628E7E26A6A36900068E86 /* NPU_Life */,
 				D2628E7D26A6A36900068E86 /* Products */,
 				51B0CE1B2A0491FDC6AAD971 /* Pods */,
@@ -139,6 +149,7 @@
 		D2628E7E26A6A36900068E86 /* NPU_Life */ = {
 			isa = PBXGroup;
 			children = (
+				D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */,
 				D214BC4926BD1C2600C17821 /* Delegate */,
 				D2758EC926ABF6EE008BD9EB /* Model */,
 				D2758EC826ABF6D6008BD9EB /* Controller */,
@@ -179,6 +190,7 @@
 				D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */,
 				D238297526BC31A9001D7FA1 /* ShowDataViewController.swift */,
 				D238297726BC3221001D7FA1 /* ShowDataTableViewController.swift */,
+				D214BC4A26BD24D500C17821 /* TestNavController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -258,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2628E8C26A6A36C00068E86 /* LaunchScreen.storyboard in Resources */,
+				D214BC4D26BD39B200C17821 /* GoogleService-Info.plist in Resources */,
 				D2628E8926A6A36C00068E86 /* Assets.xcassets in Resources */,
 				D2628E8726A6A36900068E86 /* Main.storyboard in Resources */,
 			);
@@ -272,15 +285,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NPU_Life/Pods-NPU_Life-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NPU_Life/Pods-NPU_Life-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NPU_Life/Pods-NPU_Life-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3AF0CC9F4E56E84B9C64BB6A /* [CP] Check Pods Manifest.lock */ = {
@@ -298,7 +311,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NPU_Life-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NPU_Finger-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -325,6 +338,7 @@
 				D2758ECF26ABFB2A008BD9EB /* ScoreTableViewCell.swift in Sources */,
 				D232D7B026B7C0C600864D58 /* CalendarTableViewController.swift in Sources */,
 				D2628E9D26A9307100068E86 /* user.swift in Sources */,
+				D214BC4B26BD24D500C17821 /* TestNavController.swift in Sources */,
 				D232D7B426B7F19500864D58 /* LoadingImages.swift in Sources */,
 				D2BD8E2D26A9C453006BC0E9 /* FancyButton.swift in Sources */,
 				D266243A26AFEC6300C6E195 /* NoShowTableViewCell.swift in Sources */,
@@ -483,10 +497,11 @@
 		};
 		D2628E9126A6A36C00068E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A4BFD073E613DD2B5E1D07C /* Pods-NPU_Life.debug.xcconfig */;
+			baseConfigurationReference = 68192D11FD2AA90F74265059 /* Pods-NPU_Finger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NPU_Finger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2H2EXVTW5;
 				INFOPLIST_FILE = NPU_Life/Info.plist;
@@ -505,10 +520,11 @@
 		};
 		D2628E9226A6A36C00068E86 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B883B1E7EBE4349155856F7 /* Pods-NPU_Life.release.xcconfig */;
+			baseConfigurationReference = 6718842B19414B85EC2EA849 /* Pods-NPU_Finger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NPU_Finger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2H2EXVTW5;
 				INFOPLIST_FILE = NPU_Life/Info.plist;
