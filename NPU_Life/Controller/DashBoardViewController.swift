@@ -19,6 +19,7 @@ class DashBoardViewController: UIViewController {
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var stdidLabel: UILabel!
     @IBOutlet weak var classLabel: UILabel!
+    @IBOutlet weak var settingButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
@@ -36,6 +37,10 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let settingImage = UIImage(named: "SETTINGIMG")!.withRenderingMode(.alwaysTemplate)
+        settingButton.setImage(settingImage, for: .normal)
+        settingButton.tintColor = .white
+        
         
         downView.layer.masksToBounds = true
         downView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]

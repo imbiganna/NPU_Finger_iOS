@@ -35,10 +35,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         uidTextField.delegate = self
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-            self.initApp()
-        }
-        
+        self.initApp()
     }
 
     @IBAction func guestMode(_ sender: Any) {
@@ -175,7 +172,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             myUser.pwd = loaduser
             if let LOCALAUTH = UserDefaults.standard.object(forKey: "LOCAL_AUTH_ON") as? Bool{
                 if LOCALAUTH == true {
-                    self.localAuth()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+                        self.localAuth()
+                    }
                 }
             }
         }

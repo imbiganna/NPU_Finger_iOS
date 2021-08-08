@@ -63,5 +63,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>使用生物識別快速登入你的校務系統</string>
 </dict>
 </plist>

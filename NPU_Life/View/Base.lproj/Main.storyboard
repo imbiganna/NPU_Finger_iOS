@@ -512,19 +512,19 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 嗨！王小明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuz-yJ-cQk">
                                                 <rect key="frame" x="0.0" y="0.0" width="91" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1107405001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikt-v4-GED">
-                                                <rect key="frame" x="0.0" y="29.333333333333329" width="90.333333333333329" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="1107405001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikt-v4-GED">
+                                                <rect key="frame" x="0.0" y="29.333333333333329" width="92" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日四技資工系三甲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqd-FS-CzM">
                                                 <rect key="frame" x="0.0" y="58.666666666666679" width="138.66666666666666" height="20.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -575,6 +575,7 @@
                         <outlet property="classLabel" destination="Vqd-FS-CzM" id="Fxo-FA-VsN"/>
                         <outlet property="downView" destination="zcl-91-wLs" id="1sX-vL-Zdl"/>
                         <outlet property="nameLabel" destination="Wuz-yJ-cQk" id="uc4-Xu-rR0"/>
+                        <outlet property="settingButton" destination="WaA-rF-C5e" id="udj-MV-foT"/>
                         <outlet property="stdidLabel" destination="Ikt-v4-GED" id="fiA-HM-FN4"/>
                         <segue destination="iND-QY-KFc" kind="show" identifier="courseTable" id="0rQ-wa-R6v"/>
                         <segue destination="1aC-T1-LAm" kind="show" identifier="goCalendat" id="cbl-KE-ODp"/>
@@ -583,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5B5-AD-p4V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2820" y="102"/>
+            <point key="canvasLocation" x="2820" y="101.97044334975369"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="mkY-KO-jde">
