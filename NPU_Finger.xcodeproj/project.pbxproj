@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		51B5B93BD1A7AD2588AF3D23 /* Pods_NPU_Finger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137560DB044E360C2450178E /* Pods_NPU_Finger.framework */; };
-		D214BC4B26BD24D500C17821 /* TestNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D214BC4A26BD24D500C17821 /* TestNavController.swift */; };
-		D214BC4D26BD39B200C17821 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */; };
 		D232D7AE26B7C08600864D58 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */; };
 		D232D7B026B7C0C600864D58 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */; };
 		D232D7B226B7CF7E00864D58 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7B126B7CF7E00864D58 /* Calendar.swift */; };
@@ -41,6 +39,7 @@
 		D29AC21426B26D3A00FDDA66 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AC21326B26D3A00FDDA66 /* Course.swift */; };
 		D29AC21626B26D9C00FDDA66 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AC21526B26D9C00FDDA66 /* Score.swift */; };
 		D2BD8E2D26A9C453006BC0E9 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */; };
+		D2F0174026C267FD008748E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,8 +48,6 @@
 		6718842B19414B85EC2EA849 /* Pods-NPU_Finger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.release.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.release.xcconfig"; sourceTree = "<group>"; };
 		68192D11FD2AA90F74265059 /* Pods-NPU_Finger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.debug.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.debug.xcconfig"; sourceTree = "<group>"; };
 		6B883B1E7EBE4349155856F7 /* Pods-NPU_Life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Life.release.xcconfig"; path = "Target Support Files/Pods-NPU_Life/Pods-NPU_Life.release.xcconfig"; sourceTree = "<group>"; };
-		D214BC4A26BD24D500C17821 /* TestNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavController.swift; sourceTree = "<group>"; };
-		D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		D232D7B126B7CF7E00864D58 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
@@ -60,7 +57,6 @@
 		D238297926BD08E2001D7FA1 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		D2392F6126AAAB5300B2C222 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D2392F6526AAB4C700B2C222 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		D25988C026BD3B5C007C3E7C /* NPU_Finger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NPU_Finger.entitlements; sourceTree = "<group>"; };
 		D2628E7C26A6A36900068E86 /* NPU_Finger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPU_Finger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2628E7F26A6A36900068E86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2628E8126A6A36900068E86 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +81,7 @@
 		D29AC21326B26D3A00FDDA66 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		D29AC21526B26D9C00FDDA66 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
+		D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +127,6 @@
 		D2628E7326A6A36800068E86 = {
 			isa = PBXGroup;
 			children = (
-				D25988C026BD3B5C007C3E7C /* NPU_Finger.entitlements */,
 				D2628E7E26A6A36900068E86 /* NPU_Life */,
 				D2628E7D26A6A36900068E86 /* Products */,
 				51B0CE1B2A0491FDC6AAD971 /* Pods */,
@@ -149,7 +145,7 @@
 		D2628E7E26A6A36900068E86 /* NPU_Life */ = {
 			isa = PBXGroup;
 			children = (
-				D214BC4C26BD39B200C17821 /* GoogleService-Info.plist */,
+				D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */,
 				D214BC4926BD1C2600C17821 /* Delegate */,
 				D2758EC926ABF6EE008BD9EB /* Model */,
 				D2758EC826ABF6D6008BD9EB /* Controller */,
@@ -190,7 +186,6 @@
 				D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */,
 				D238297526BC31A9001D7FA1 /* ShowDataViewController.swift */,
 				D238297726BC3221001D7FA1 /* ShowDataTableViewController.swift */,
-				D214BC4A26BD24D500C17821 /* TestNavController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2628E8C26A6A36C00068E86 /* LaunchScreen.storyboard in Resources */,
-				D214BC4D26BD39B200C17821 /* GoogleService-Info.plist in Resources */,
+				D2F0174026C267FD008748E3 /* GoogleService-Info.plist in Resources */,
 				D2628E8926A6A36C00068E86 /* Assets.xcassets in Resources */,
 				D2628E8726A6A36900068E86 /* Main.storyboard in Resources */,
 			);
@@ -338,7 +333,6 @@
 				D2758ECF26ABFB2A008BD9EB /* ScoreTableViewCell.swift in Sources */,
 				D232D7B026B7C0C600864D58 /* CalendarTableViewController.swift in Sources */,
 				D2628E9D26A9307100068E86 /* user.swift in Sources */,
-				D214BC4B26BD24D500C17821 /* TestNavController.swift in Sources */,
 				D232D7B426B7F19500864D58 /* LoadingImages.swift in Sources */,
 				D2BD8E2D26A9C453006BC0E9 /* FancyButton.swift in Sources */,
 				D266243A26AFEC6300C6E195 /* NoShowTableViewCell.swift in Sources */,
@@ -510,7 +504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.NPUFinger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -533,7 +527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.NPUFinger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;

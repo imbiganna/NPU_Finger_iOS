@@ -39,7 +39,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func guestMode(_ sender: Any) {
-        myUser.name = "王大明"
+        myUser.name = "訪客模式"
         myUser.stdid = "1107000000"
         myUser.Class = "尚未登入"
         self.performSegue(withIdentifier: "goDashboard", sender: nil)
@@ -168,8 +168,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             myUser.stdid = loaduser
         }
 
-        if let loaduser = UserDefaults.standard.object(forKey: "pwd") as? String {
-            myUser.pwd = loaduser
+        if let loadPWD = UserDefaults.standard.object(forKey: "pwd") as? String {
+            myUser.pwd = loadPWD
             if let LOCALAUTH = UserDefaults.standard.object(forKey: "LOCAL_AUTH_ON") as? Bool{
                 if LOCALAUTH == true {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){

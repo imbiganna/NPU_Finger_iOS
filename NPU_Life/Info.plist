@@ -22,10 +22,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSlocalAuthUsageDescription</key>
+	<key>NSFaceIDUsageDescription</key>
 	<string>使用生物識別快速登入你的校務系統</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>儲存課表！必須選擇允許所有相片才可以儲存！</string>
+	<key>NSlocalAuthUsageDescription</key>
+	<string>使用生物識別快速登入你的校務系統</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -63,7 +65,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>使用生物識別快速登入你的校務系統</string>
 </dict>
 </plist>

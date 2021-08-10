@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>346449046734-t52148olmjfkj18dg6odoscgoaf4l33m.apps.googleusercontent.com</string>
+	<string>346449046734-l61aftuj7i1rjfl6ch1tkh8uptlp8ao5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.346449046734-t52148olmjfkj18dg6odoscgoaf4l33m</string>
+	<string>com.googleusercontent.apps.346449046734-l61aftuj7i1rjfl6ch1tkh8uptlp8ao5</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDdefjyBCF9n9mseZkBWHLHk4GidYKTdUY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.biganna.NPUFinger</string>
+	<string>com.biganna.npuonefinger</string>
 	<key>PROJECT_ID</key>
 	<string>npufingerapps</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:346449046734:ios:8cc957d9b694311de6b49f</string>
+	<string>1:346449046734:ios:f6e65c61871050cee6b49f</string>
 </dict>
 </plist>

@@ -14,6 +14,8 @@ class newNewsTableViewController: UITableViewController {
     var newsDateArray = [String]()
     var newsTeamArray = [String]()
     var newsURL = [String]()
+    var isInit = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewsList()
@@ -28,20 +30,32 @@ class newNewsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return newsTitleArray.count
+        if isInit{
+            return 1
+            
+        }else {
+            return newsTitleArray.count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "newsInfoCell", for: indexPath) as? newNewsTableViewCell{
-            cell.newsTitle.text = newsTitleArray[indexPath.row]
-            cell.newsDate.text = newsDateArray[indexPath.row]
-            cell.newsTeam.text = newsTeamArray[indexPath.row]
+        
+        if isInit{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
             return cell
         }else{
-            let cell = UITableViewCell()
-            return cell
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "newsInfoCell", for: indexPath) as? newNewsTableViewCell{
+                cell.newsTitle.text = newsTitleArray[indexPath.row]
+                cell.newsDate.text = newsDateArray[indexPath.row]
+                cell.newsTeam.text = newsTeamArray[indexPath.row]
+                return cell
+            }else{
+                let cell = UITableViewCell()
+                return cell
+            }
         }
+
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,6 +91,7 @@ class newNewsTableViewController: UITableViewController {
                     self.newsURL.append(news["newsURL"].string!)
                 }
                 DispatchQueue.main.async {
+                    self.isInit = false
                     self.animateTable()
                 }
             }

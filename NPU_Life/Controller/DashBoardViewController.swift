@@ -10,7 +10,6 @@ import LocalAuthentication
 import SafariServices
 import SwiftyJSON
 class DashBoardViewController: UIViewController {
-    
     var user = User()
     var loadSettings = newSettings()
     var dataView : ShowDataViewController?
@@ -48,7 +47,7 @@ class DashBoardViewController: UIViewController {
         stdidLabel.text = user.stdid
         classLabel.text = user.Class
         
-        if user.name != "王大明"{
+        if user.name != "訪客模式"{
             if UserDefaults.standard.object(forKey: "LOCAL_AUTH_ON") == nil {
                 let localAuthAlert = UIAlertController(title: "要啟用生物辨識快速登入嗎", message: "稍後可在設定中更改", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "好阿！", style: .default, handler: {
@@ -104,7 +103,7 @@ class DashBoardViewController: UIViewController {
     }
     
     @IBAction func settingButton(_ sender: UIButton) {
-        if user.name == "王大明"{
+        if user.name == "訪客模式"{
             self.showMessage(title: "哎呀", message: "你還沒登入沒辦法做設定唷！")
             return
         }
@@ -122,7 +121,7 @@ class DashBoardViewController: UIViewController {
 
     
     @IBAction func showData(_ sender: UIButton) {
-        if user.name == "王大明"{
+        if user.name == "訪客模式"{
             self.showMessage(title: "哎呀", message: "你還沒登入想做什麼？")
             return
         }
@@ -143,7 +142,7 @@ class DashBoardViewController: UIViewController {
 
     
     @IBAction func goCourseTable(_ sender: UIButton) {
-        if user.name == "王大明"{
+        if user.name == "訪客模式"{
             self.showMessage(title: "哎呀", message: "你還沒登入要怎麼看課表呢？")
             return
         }
@@ -189,8 +188,8 @@ class DashBoardViewController: UIViewController {
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { (success, error) in
                 if success {
                     DispatchQueue.main.async { [unowned self] in
-                        self.showMessage(title: "辨識成功！", message: "已成功啟用快速登入！")
-                        self.loadSettings.updateSetting(LOCALAUTH: true, AUTOUPDATE: self.loadSettings.AUTO_UPDATE)
+                        showMessage(title: "辨識成功！", message: "已成功啟用快速登入！")
+                        loadSettings.updateSetting(LOCALAUTH: true, AUTOUPDATE: self.loadSettings.AUTO_UPDATE)
                     }
                 } else {
                     self.showMessage(title: "失敗", message: "辨識失敗！可稍後於設定啟用")
@@ -209,8 +208,8 @@ class DashBoardViewController: UIViewController {
             dataView = segue.destination as? ShowDataViewController
             dataView?.myUser = self.user
             dataView?.dataType = self.dataType
-
         }
+        
         let backItem = UIBarButtonItem()
         backItem.title = "返回"
         backItem.tintColor = .white
