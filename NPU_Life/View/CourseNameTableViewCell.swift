@@ -24,7 +24,11 @@ class CourseNameTableViewCell: UITableViewCell {
         for course in myUser.course{
             for myCourse in course{
                 if myCourse?.courseName == sender.currentTitle{
-                    alertCourse(CourseName: (myCourse?.courseName)!, CourseRoom: (myCourse?.courseRoom)!, Teacher: (myCourse?.courseTeacher)!)
+                    var tmpCourseName = myCourse?.courseName
+                    if myCourse?.fullCourseName != ""{
+                        tmpCourseName = myCourse?.fullCourseName
+                    }
+                    alertCourse(CourseName: tmpCourseName!, CourseRoom: (myCourse?.courseRoom)!, Teacher: (myCourse?.courseTeacher)!)
                 }
             }
         }

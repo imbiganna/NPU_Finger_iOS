@@ -10,7 +10,7 @@ import UIKit
 class CourseTableTableViewController: UITableViewController {
     
     var tableTitle = [" ","一","二","三","四","五"]
-    var mySetColor:[UIColor] = [.blue.withAlphaComponent(0.6) , .brown.withAlphaComponent(0.6) , .yellow.withAlphaComponent(0.6), .gray.withAlphaComponent(0.6) , .green.withAlphaComponent(0.6) , .lightGray.withAlphaComponent(0.6) , .orange.withAlphaComponent(0.6) , .purple.withAlphaComponent(0.6),.red.withAlphaComponent(0.6),.systemTeal.withAlphaComponent(0.6)]
+    var mySetColor:[UIColor] = [UIColor(red: 245/255, green: 250/255, blue: 170/255, alpha: 0.6),UIColor(red: 248/255, green: 195/255, blue: 205/255, alpha: 0.6) , .brown.withAlphaComponent(0.6) , .yellow.withAlphaComponent(0.6), UIColor(red: 238/255, green: 169/255, blue: 169/255, alpha: 0.6) , UIColor(red: 254/255, green: 233/255, blue: 225/255, alpha: 0.6) , .lightGray.withAlphaComponent(0.6) , .orange.withAlphaComponent(0.6) , UIColor(red: 220/255, green: 159/255, blue: 180/255, alpha: 0.6),.red.withAlphaComponent(0.6),.systemTeal.withAlphaComponent(0.6),.systemIndigo.withAlphaComponent(0.6)]
     var myColor:[String:UIColor] = ["TEST" : .blue]
     var user = User()
     var tableDetail = [[String()]]

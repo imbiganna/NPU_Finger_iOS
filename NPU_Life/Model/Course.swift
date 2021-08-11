@@ -8,6 +8,7 @@
 import Foundation
 
 class Course{
+    var fullCourseName:String?
     var courseName:String?
     var courseRoom:String?
     var courseTeacher:String?

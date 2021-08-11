@@ -91,6 +91,7 @@ class CourseTableViewController: UIViewController {
                             courseName.remove(at:courseName.startIndex)
                         }
                         if courseName.contains("-"){
+                            myCourse.fullCourseName = courseName
                             courseName.removeSubrange(courseName.index(courseName.endIndex, offsetBy: -5) ..< courseName.endIndex)
                         }
                         myCourse.courseName = courseName

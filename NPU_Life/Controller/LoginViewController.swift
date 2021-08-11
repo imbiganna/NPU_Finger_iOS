@@ -61,6 +61,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             loadingView.startAnimating()
             myUser.pwd = self.pwdTextField.text!
             let myUid = uidTextField.text!
+
             let myPwd = pwdTextField.text!
             getToken(userID: myUid, userPWD: myPwd)
         }
@@ -90,17 +91,25 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     self.showMessage(title: "哎呀！", message: errorMsg)
                 }
                 return
-            }else{
-                let myToken = JSON(data!)
-                if myToken["error"].string! == "帳號密碼錯誤" || myToken["error"].string! == "帳號或密碼為空"{
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
                     DispatchQueue.main.async {
-                        self.showMessage(title: "哎呀❗️", message: "帳號或密碼錯誤\n請你再檢查看看")
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！你是畢業生嗎？\n是的話暫不開放畢業生登入唷")
                         self.loadingView.stopAnimating()
                         return
                     }
                 }else{
-                    self.myUser.token = myToken["token"].string!
-                    self.getUserInfo(UserToken: self.myUser.token)
+                    let myToken = JSON(data!)
+                    if myToken["error"].string! == "帳號密碼錯誤" || myToken["error"].string! == "帳號或密碼為空"{
+                        DispatchQueue.main.async {
+                            self.showMessage(title: "哎呀❗️", message: "帳號或密碼錯誤\n請你再檢查看看")
+                            self.loadingView.stopAnimating()
+                            return
+                        }
+                    }else{
+                        self.myUser.token = myToken["token"].string!
+                        self.getUserInfo(UserToken: self.myUser.token)
+                    }
                 }
             }
         })
@@ -120,7 +129,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 return
             }else{
                 let myData = JSON(data!)
-                self.myUser.Class = myData["myClass"].string!
+                if myData["myClass"].string != nil{
+                    self.myUser.Class = myData["myClass"].string!
+                }
                 self.myUser.grade = myData["grade"].string!
                 self.myUser.name = myData["name"].string!
                 self.myUser.stdid = myData["stdid"].string!

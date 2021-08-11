@@ -9,7 +9,7 @@ import Foundation
 
 class User{
     var pwd:String = ""
-    var grade:String = ""
+    var grade:String? = ""
     var Class:String = ""
     var name:String = ""
     var stdid:String = ""
