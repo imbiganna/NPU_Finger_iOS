@@ -72,7 +72,7 @@ class newNewsTableViewController: UITableViewController {
     
     
     func getNewsList(){
-        let url = URL(string:"https://api.nasss.ml/api/newsList")!
+        let url = URL(string:"https://app.npu.edu.tw/api/newsList")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         

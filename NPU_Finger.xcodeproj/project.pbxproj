@@ -38,6 +38,7 @@
 		D29AC21226B137D600FDDA66 /* newNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AC21126B137D600FDDA66 /* newNewsTableViewCell.swift */; };
 		D29AC21426B26D3A00FDDA66 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AC21326B26D3A00FDDA66 /* Course.swift */; };
 		D29AC21626B26D9C00FDDA66 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AC21526B26D9C00FDDA66 /* Score.swift */; };
+		D2B741C426CA55A500103511 /* GreaduateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B741C326CA55A500103511 /* GreaduateViewController.swift */; };
 		D2BD8E2D26A9C453006BC0E9 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */; };
 		D2F0174026C267FD008748E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,7 @@
 		D29AC21126B137D600FDDA66 /* newNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newNewsTableViewCell.swift; sourceTree = "<group>"; };
 		D29AC21326B26D3A00FDDA66 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		D29AC21526B26D9C00FDDA66 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		D2B741C326CA55A500103511 /* GreaduateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaduateViewController.swift; sourceTree = "<group>"; };
 		D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 				D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */,
 				D238297526BC31A9001D7FA1 /* ShowDataViewController.swift */,
 				D238297726BC3221001D7FA1 /* ShowDataTableViewController.swift */,
+				D2B741C326CA55A500103511 /* GreaduateViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				D266243426AEA18800C6E195 /* CourseNameTableViewCell.swift in Sources */,
 				D238297826BC3221001D7FA1 /* ShowDataTableViewController.swift in Sources */,
 				D2628E8426A6A36900068E86 /* LoginViewController.swift in Sources */,
+				D2B741C426CA55A500103511 /* GreaduateViewController.swift in Sources */,
 				D238297A26BD08E2001D7FA1 /* DataType.swift in Sources */,
 				D266243226ADB43800C6E195 /* CourseTableViewCell.swift in Sources */,
 				D232D7AE26B7C08600864D58 /* CalendarTableViewCell.swift in Sources */,
@@ -505,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -530,7 +534,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

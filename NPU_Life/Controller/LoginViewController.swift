@@ -68,7 +68,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func getToken(userID uid:String , userPWD pwd:String){
-        let url = URL(string:"https://api.nasss.ml/api/login?")!
+        let url = URL(string:"https://app.npu.edu.tw/api/login?")!
         let postUser:String = "uid=\(uid)&pwd=\(pwd)"
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func getUserInfo(UserToken token:String){
-        let url = URL(string:"https://api.nasss.ml/api/info?token=\(token)")!
+        let url = URL(string:"https://app.npu.edu.tw/api/info?token=\(token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         

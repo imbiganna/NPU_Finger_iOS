@@ -63,34 +63,65 @@ class ShowDataViewController: UIViewController {
     }
     
     func getScore(){
-        let url = URL(string:"https://api.nasss.ml/api/score?token=\(myUser.token)")!
+        let url = URL(string:"https://app.npu.edu.tw/api/score?token=\(myUser.token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let newURL = URLSession(configuration: .default)
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
-                return
-            }else{
-                let myData = JSON(data!)
-                if myData["msg"].string != nil {
-                    DispatchQueue.main.async {
-                        self.showMessage(title: "閒置過久", message: "請重新登入！")
-                    }
-                    return
-                }
-                if myData["error"].string == "未填寫教學評量"{
-                    DispatchQueue.main.async {
-                        self.showMessage(title: "哎呀！", message: "你好像沒填寫教學評量\n查不到成績唷！")
-                    }
-                    return
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
                 }
                 DispatchQueue.main.async {
-                    self.labelOne.text = myData["avgScore"].string
-                    self.labelSecond.text = myData["conduct"].string
-                    self.labelThird.text = myData["rank"].string
+                    self.showMessage(title: "哎呀！", message: errorMsg)
                 }
+                return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n請稍後再試\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        self.loadingView.stopAnimating()
+                        return
+                    }
+                }
+            }
+            let myData = JSON(data!)
+            if myData["msg"].string != nil {
+                DispatchQueue.main.async {
+                    self.showMessage(title: "閒置過久", message: "請重新登入！")
+                }
+                return
+            }
+            if myData["error"].string == "未填寫教學評量"{
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: "你好像沒填寫教學評量\n查不到成績唷！")
+                }
+                return
+            }else if myData["error"].string == "查無成績資料"{
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: "現在好像還查不到成績耶\n你要不要再確認看看！")
+                }
+                return
+            }else if myData["error"].string == "查無成績資料"{
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: "好像出了點問題查不到成績\n你要不要到校務系統確認一下")
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.labelOne.text = myData["avgScore"].string
+                self.labelSecond.text = myData["conduct"].string
+                self.labelThird.text = myData["rank"].string
+            }
+            if self.myUser.score.count < 1{
                 for (_,score):(String,JSON) in myData["value"]{
                     let tmpScore = Score()
                     tmpScore.courseName = score["courseName"].string!
@@ -98,19 +129,23 @@ class ShowDataViewController: UIViewController {
                     tmpScore.midScore = score["midScore"].string!
                     self.myUser.score.append(tmpScore)
                 }
-                self.dataView?.isInit = false
-                DispatchQueue.main.async {
-                    self.dataView?.animateTable()
-                    self.loadingView.stopAnimating()
-                }
             }
+
+            self.dataView?.isInit = false
+            DispatchQueue.main.async {
+                self.dataView?.animateTable()
+                self.loadingView.stopAnimating()
+            }
+            
         })
         myTask.resume()
+    
+    
     }
     
     
     func getNoShow(){
-        let url = URL(string:"https://api.nasss.ml/api/noshow?token=\(myUser.token)")!
+        let url = URL(string:"https://app.npu.edu.tw/api/noshow?token=\(myUser.token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -118,8 +153,28 @@ class ShowDataViewController: UIViewController {
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
+                }
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: errorMsg)
+                }
                 return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n請稍後再試\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        self.loadingView.stopAnimating()
+                        return
+                    }
+                }
             }else{
                 let myData = JSON(data!)
                 if myData["msg"].string != nil {
@@ -170,7 +225,7 @@ class ShowDataViewController: UIViewController {
     }
     
     func getMyReward(){
-        let url = URL(string:"https://api.nasss.ml/api/reward?token=\(myUser.token)")!
+        let url = URL(string:"https://app.npu.edu.tw/api/reward?token=\(myUser.token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -178,8 +233,28 @@ class ShowDataViewController: UIViewController {
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
+                }
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: errorMsg)
+                }
                 return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n請稍後再試\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        self.loadingView.stopAnimating()
+                        return
+                    }
+                }
             }else{
                 let myData = JSON(data!)
                 if myData["msg"].string != nil{

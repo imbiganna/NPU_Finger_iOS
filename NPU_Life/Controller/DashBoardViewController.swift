@@ -9,11 +9,15 @@ import UIKit
 import LocalAuthentication
 import SafariServices
 import SwiftyJSON
+import Photos
+import PhotosUI
+
 class DashBoardViewController: UIViewController {
     var user = User()
     var loadSettings = newSettings()
     var dataView : ShowDataViewController?
     var dataType:DataType?
+    @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var stdidLabel: UILabel!
@@ -36,6 +40,8 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let pressGesture = UILongPressGestureRecognizer(target: self, action: #selector(changePhoto))
+        self.imageButton.addGestureRecognizer(pressGesture)
         let settingImage = UIImage(named: "SETTINGIMG")!.withRenderingMode(.alwaysTemplate)
         settingButton.setImage(settingImage, for: .normal)
         settingButton.tintColor = .white
@@ -63,6 +69,11 @@ class DashBoardViewController: UIViewController {
                     self.present(localAuthAlert, animated: true, completion: nil)
                 }
             }
+            if UserDefaults.standard.object(forKey: "profile\(self.user.stdid)") != nil{
+                let profilePhoto = (UserDefaults.standard.object(forKey: "profile\(self.user.stdid)") as? Data)!
+                let mySaveImage = UIImage(data: profilePhoto)!
+                self.imageButton.setImage(mySaveImage, for: .normal)
+            }
         }
         
         if let AUTOUPDATE = UserDefaults.standard.object(forKey: "AUTO_UPDATE") as? Bool{
@@ -72,8 +83,18 @@ class DashBoardViewController: UIViewController {
         }
     }
     
+    @objc func changePhoto(){
+        let myChangeAlert = UIAlertController(title: "想換頭嗎？", message:nil, preferredStyle: .actionSheet)
+        myChangeAlert.addAction(UIAlertAction(title: "從相簿挑選！", style: .default, handler: {
+            _ in
+            self.selectPhoto()
+        }))
+        myChangeAlert.addAction(UIAlertAction(title: "沒事啦哈哈", style: .cancel, handler: nil))
+        self.present(myChangeAlert, animated: true, completion: nil)
+    }
+    
     func checkUpdate(){
-        let url = URL(string:"https://api.nasss.ml/api/ckeckVersion")!
+        let url = URL(string:"https://app.npu.edu.tw/api/ckeckVersion")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -84,7 +105,7 @@ class DashBoardViewController: UIViewController {
                 return
             }else{
                 let myData = JSON(data!)
-                if Double(myData["iOS"].string!)! > 1.01{
+                if Double(myData["iOS"].string!)! > 1.2{
                     DispatchQueue.main.async {
                         let updateAlert = UIAlertController(title: "發現新版本！", message: "檢查到新版本！要立即前往更新嗎？", preferredStyle: .alert)
                         updateAlert.addAction(UIAlertAction(title: "好阿！", style: .default, handler: {
@@ -141,6 +162,13 @@ class DashBoardViewController: UIViewController {
     
 
     
+    @IBAction func showGread(_ sender: FancyButton) {
+        if user.name == "訪客模式"{
+            self.showMessage(title: "哎呀", message: "你還沒登入想做什麼？")
+            return
+        }
+        performSegue(withIdentifier: "showGread", sender: nil)
+    }
     @IBAction func goCourseTable(_ sender: UIButton) {
         if user.name == "訪客模式"{
             self.showMessage(title: "哎呀", message: "你還沒登入要怎麼看課表呢？")
@@ -208,12 +236,84 @@ class DashBoardViewController: UIViewController {
             dataView = segue.destination as? ShowDataViewController
             dataView?.myUser = self.user
             dataView?.dataType = self.dataType
+        }else if segue.identifier == "showGread"
+        {
+            let greadView = segue.destination as? GreaduateViewController
+            greadView?.myUser = self.user
         }
-        
         let backItem = UIBarButtonItem()
         backItem.title = "返回"
         backItem.tintColor = .white
         navigationItem.backBarButtonItem = backItem
     }
     
+}
+
+extension DashBoardViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+
+    func selectPhoto(){
+        checkAuth()
+    }
+    
+    func takePhoto(){
+        let controller = UIImagePickerController()
+        controller.sourceType = .camera
+        controller.delegate = self
+
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let myImage = info[.editedImage] as? UIImage
+        let imageData = myImage?.jpegData(compressionQuality: 1.0)
+        if imageData != nil {
+            UserDefaults.standard.setValue(imageData, forKey: "profile\(self.user.stdid)")
+        }
+        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.imageButton.setImage(myImage, for: .normal)
+        }
+        
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func checkAuth(){
+        let photoLibraryStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoLibraryStatus {
+        case .denied:
+            let alertController = UIAlertController(title: "哎呀！", message: "你好像沒有允許使用相簿耶\n要去設定允許嗎？", preferredStyle: .alert)
+            let settingAction = UIAlertAction(title: "好阿", style: .default, handler: { (action) in
+                let url = URL(string: UIApplication.openSettingsURLString)
+                    if let url = url, UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+            })
+            alertController.addAction(UIAlertAction(title: "先不要", style: .cancel, handler: nil))
+            alertController.addAction(settingAction)
+            self.present(alertController, animated: true, completion: nil)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (statusFirst) in
+                self.selectPhoto()
+            })
+        case .authorized:
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = .photoLibrary
+            controller.allowsEditing = true
+            self.present(controller, animated: true, completion: nil)
+        default:
+            let alertController = UIAlertController(title: "哎呀！", message: "你好像沒有允許使用相簿耶\n要去設定允許嗎？", preferredStyle: .alert)
+            let settingAction = UIAlertAction(title: "好阿", style: .default, handler: { (action) in
+                let url = URL(string: UIApplication.openSettingsURLString)
+                    if let url = url, UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+            })
+            alertController.addAction(UIAlertAction(title: "先不要", style: .cancel, handler: nil))
+            alertController.addAction(settingAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }

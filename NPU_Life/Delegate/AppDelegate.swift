@@ -50,7 +50,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("fcm Token", fcmToken ?? "")
+        //print("fcm Token", fcmToken ?? "")
         // 將 fcm token 傳送給後臺
     }
 }

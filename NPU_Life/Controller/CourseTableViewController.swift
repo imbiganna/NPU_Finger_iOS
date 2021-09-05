@@ -14,7 +14,8 @@ class CourseTableViewController: UIViewController {
     var user = User()
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UIView!
-    let weekName = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+    @IBOutlet weak var backview: UIView!
+    let weekName = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
     
     var courseView:CourseTableTableViewController?
     
@@ -27,21 +28,14 @@ class CourseTableViewController: UIViewController {
         self.courseView?.user = self.user
         self.title = "查課表"
         shareButton.tintColor = .white
+       // self.courseView?.height = self.tableView.frame.size.height
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         barAppearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = barAppearance
-        print(self.user.course.count)
-        if self.user.course.count > 1{
-            courseView?.isInit = false
-            courseView?.height = self.tableView.frame.size.height
-            courseView?.getColor()
-            courseView?.animateTable()
-        }else{
-            user.course = [[Course]()]
-            getCourse()
-            print(self.user.course.count)
-        }
+        
+        getCourse()
+        
     }
     
     @IBAction func shareTable(_ sender: UIBarButtonItem) {
@@ -58,7 +52,7 @@ class CourseTableViewController: UIViewController {
     
     func getCourse(){
         self.loadingView.startAnimating()
-        let url = URL(string:"https://api.nasss.ml/api/coursetable?token=\(self.user.token)")!
+        let url = URL(string:"https://app.npu.edu.tw/api/coursetable?token=\(self.user.token)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -66,25 +60,46 @@ class CourseTableViewController: UIViewController {
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
-                return
-            }else{
-                let myData = JSON(data!)
-                if myData["msg"].string != nil {
-                    DispatchQueue.main.async {
-                        self.showMessage(title: "閒置過久", message: "請重新登入！")
-                    }
-                    return
-                }else if myData["error"].string != nil{
-                    DispatchQueue.main.async {
-                        self.showMessage(title: "哎呀！查不到課表", message: "如果校務系統正常麻煩幫我回報Bug讓程式正常使用！")
-                    }
-                    return
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
                 }
-                
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: errorMsg)
+                }
+                return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n請稍後再試\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        self.loadingView.stopAnimating()
+                        return
+                    }
+                }
+            }
+            let myData = JSON(data!)
+            if myData["msg"].string != nil {
+                DispatchQueue.main.async {
+                    self.showMessage(title: "閒置過久", message: "請重新登入！")
+                }
+                return
+            }else if myData["error"].string != nil{
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！查不到課表", message: "如果校務系統正常麻煩幫我回報Bug讓程式正常使用！")
+                }
+                return
+            }
+            if self.user.course.count <= 1{
+                self.user.course = [[Course]()]
                 for i in 0...8{
                     var tempdata = [Course]()
-                    for j in 0...4{
+                    for j in 0...5{
                         let myCourse:Course = Course()
                         var courseName:String = myData["value"][i]["No\(i+1)"][self.weekName[j]]["courseName"].string!
                         if courseName.contains("*"){
@@ -93,6 +108,10 @@ class CourseTableViewController: UIViewController {
                         if courseName.contains("-"){
                             myCourse.fullCourseName = courseName
                             courseName.removeSubrange(courseName.index(courseName.endIndex, offsetBy: -5) ..< courseName.endIndex)
+                        }
+                        if courseName.contains("全民國防"){
+                            myCourse.fullCourseName = courseName
+                            courseName = "國防"
                         }
                         myCourse.courseName = courseName
                         myCourse.courseRoom = myData["value"][i]["No\(i+1)"][self.weekName[j]]["room"].string!
@@ -103,13 +122,18 @@ class CourseTableViewController: UIViewController {
                 }
                 self.user.course.remove(at: 0)
                 self.courseView?.isInit = false
-                self.courseView?.getColor()
-                DispatchQueue.main.async {
-                    self.courseView?.height = self.tableView.frame.size.height
-                    self.courseView?.animateTable()
-                    self.loadingView.stopAnimating()
-                }
+                self.courseView?.haveSat = myData["haveSatDay"].string!
+                print("haveSat:\(myData["haveSatDay"].string!)")
+            }else{
+                self.courseView?.isInit = false
             }
+            self.courseView?.getColor()
+            DispatchQueue.main.async {
+                self.courseView?.height = self.tableView.frame.size.height
+                self.courseView?.animateTable()
+                self.loadingView.stopAnimating()
+            }
+            
         })
         myTask.resume()
     }

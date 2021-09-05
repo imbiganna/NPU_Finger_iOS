@@ -22,10 +22,12 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>更換頭貼！</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>使用生物識別快速登入你的校務系統</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>儲存課表！必須選擇允許所有相片才可以儲存！</string>
+	<string>允許取用相片才可以更換頭貼、儲存課表</string>
 	<key>NSlocalAuthUsageDescription</key>
 	<string>使用生物識別快速登入你的校務系統</string>
 	<key>UIApplicationSceneManifest</key>
@@ -59,7 +61,7 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>UISupportedInterfaceOrientations</key>
+	<key>UISupportedInterfaceOrientations~iphone</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
