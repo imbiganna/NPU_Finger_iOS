@@ -28,12 +28,11 @@ class CourseTableViewController: UIViewController {
         self.courseView?.user = self.user
         self.title = "查課表"
         shareButton.tintColor = .white
-       // self.courseView?.height = self.tableView.frame.size.height
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         barAppearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = barAppearance
-        
+        print(self.user.stdType)
         getCourse()
         
     }
@@ -97,33 +96,59 @@ class CourseTableViewController: UIViewController {
             }
             if self.user.course.count <= 1{
                 self.user.course = [[Course]()]
-                for i in 0...8{
-                    var tempdata = [Course]()
-                    for j in 0...5{
-                        let myCourse:Course = Course()
-                        var courseName:String = myData["value"][i]["No\(i+1)"][self.weekName[j]]["courseName"].string!
-                        if courseName.contains("*"){
-                            courseName.remove(at:courseName.startIndex)
+                if self.user.stdType == "Night"{
+                    for i in 9...13{
+                        var tempdata = [Course]()
+                        for j in 0...5{
+                            let myCourse:Course = Course()
+                            var courseName:String = myData["value"][i]["No\(i+1)"][self.weekName[j]]["courseName"].string!
+                            if courseName.contains("*"){
+                                courseName.remove(at:courseName.startIndex)
+                            }
+                            if courseName.contains("-"){
+                                myCourse.fullCourseName = courseName
+                                courseName.removeSubrange(courseName.index(courseName.endIndex, offsetBy: -5) ..< courseName.endIndex)
+                            }
+                            if courseName.contains("全民國防"){
+                                myCourse.fullCourseName = courseName
+                                courseName = "國防"
+                            }
+                            myCourse.courseName = courseName
+                            myCourse.courseRoom = myData["value"][i]["No\(i+1)"][self.weekName[j]]["room"].string!
+                            myCourse.courseTeacher = myData["value"][i]["No\(i+1)"][self.weekName[j]]["teacher"].string!
+                            tempdata.append(myCourse)
                         }
-                        if courseName.contains("-"){
-                            myCourse.fullCourseName = courseName
-                            courseName.removeSubrange(courseName.index(courseName.endIndex, offsetBy: -5) ..< courseName.endIndex)
-                        }
-                        if courseName.contains("全民國防"){
-                            myCourse.fullCourseName = courseName
-                            courseName = "國防"
-                        }
-                        myCourse.courseName = courseName
-                        myCourse.courseRoom = myData["value"][i]["No\(i+1)"][self.weekName[j]]["room"].string!
-                        myCourse.courseTeacher = myData["value"][i]["No\(i+1)"][self.weekName[j]]["teacher"].string!
-                        tempdata.append(myCourse)
+                        self.user.course.append(tempdata)
                     }
-                    self.user.course.append(tempdata)
+                }else{
+                    for i in 0...8{
+                        var tempdata = [Course]()
+                        for j in 0...5{
+                            let myCourse:Course = Course()
+                            var courseName:String = myData["value"][i]["No\(i+1)"][self.weekName[j]]["courseName"].string!
+                            if courseName.contains("*"){
+                                courseName.remove(at:courseName.startIndex)
+                            }
+                            if courseName.contains("-"){
+                                myCourse.fullCourseName = courseName
+                                courseName.removeSubrange(courseName.index(courseName.endIndex, offsetBy: -5) ..< courseName.endIndex)
+                            }
+                            if courseName.contains("全民國防"){
+                                myCourse.fullCourseName = courseName
+                                courseName = "國防"
+                            }
+                            myCourse.courseName = courseName
+                            myCourse.courseRoom = myData["value"][i]["No\(i+1)"][self.weekName[j]]["room"].string!
+                            myCourse.courseTeacher = myData["value"][i]["No\(i+1)"][self.weekName[j]]["teacher"].string!
+                            tempdata.append(myCourse)
+                        }
+                        self.user.course.append(tempdata)
+                    }
                 }
                 self.user.course.remove(at: 0)
                 self.courseView?.isInit = false
-                self.courseView?.haveSat = myData["haveSatDay"].string!
-                print("haveSat:\(myData["haveSatDay"].string!)")
+                self.user.haveSat = myData["haveSatDay"].string!
+                
             }else{
                 self.courseView?.isInit = false
             }

@@ -105,7 +105,7 @@ class DashBoardViewController: UIViewController {
                 return
             }else{
                 let myData = JSON(data!)
-                if Double(myData["iOS"].string!)! > 1.2{
+                if myData["iOS"].string! != "1.21" && myData["iOS"].string! != "1.2"{
                     DispatchQueue.main.async {
                         let updateAlert = UIAlertController(title: "發現新版本！", message: "檢查到新版本！要立即前往更新嗎？", preferredStyle: .alert)
                         updateAlert.addAction(UIAlertAction(title: "好阿！", style: .default, handler: {

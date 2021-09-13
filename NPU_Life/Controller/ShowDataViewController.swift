@@ -175,51 +175,51 @@ class ShowDataViewController: UIViewController {
                         return
                     }
                 }
-            }else{
-                let myData = JSON(data!)
-                if myData["msg"].string != nil {
-                    self.navigationController?.popViewController(animated: true)
-                    return
-                }
-                if myData["error"].string == "查無缺曠資料"{
-                    DispatchQueue.main.async {
-                        let myAlert = UIAlertController(title: "哎呀！", message: "查無缺曠資料！\n看來是個不翹課的乖學生！", preferredStyle: .alert)
-                        myAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-                            _ in
-                            self.navigationController?.popViewController(animated: true)
-                        }))
-                        self.present(myAlert, animated: true, completion: nil)
-                    }
-                }
-                var noShowCount = 0
-                var canNoShowCount = 0
-                for (_,noShow):(String,JSON) in myData["value"]{
-                    var temp = [String()]
-                    temp.append(noShow["id"].string!)
-                    temp.append(noShow["date"].string!)
-                    for j in 1...8{
-                        if noShow["course\(j)"].string! == "缺曠"{
-                            noShowCount += 1
-                        }else if Array(noShow["course\(j)"].string!).count >= 2 {
-                            canNoShowCount += 1
-                        }
-                        print(noShow["course\(j)"].string!)
-                        temp.append(noShow["course\(j)"].string!)
-                    }
-                    temp.remove(at: 0)
-                    self.myNoShow.append(temp)
-                }
-                self.myNoShow.remove(at: 0)
-                self.dataView?.isInit = false
-                self.dataView?.myNoShow = self.myNoShow
+            }
+            let myData = JSON(data!)
+            if myData["msg"].string != nil {
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
+            if myData["error"].string == "查無缺曠資料"{
                 DispatchQueue.main.async {
-                    self.labelOne.text = "曠課節數：\(noShowCount)"
-                    self.labelSecond.text = "已請節數：\(canNoShowCount)"
-                    self.dataView?.animateTable()
-                    self.loadingView.stopAnimating()
-
+                    let myAlert = UIAlertController(title: "哎呀！", message: "查無缺曠資料！\n看來是個不翹課的乖學生！", preferredStyle: .alert)
+                    myAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        _ in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(myAlert, animated: true, completion: nil)
                 }
             }
+            var noShowCount = 0
+            var canNoShowCount = 0
+            for (_,noShow):(String,JSON) in myData["value"]{
+                var temp = [String()]
+                temp.append(noShow["id"].string!)
+                temp.append(noShow["date"].string!)
+                for j in 1...8{
+                    if noShow["course\(j)"].string! == "缺曠"{
+                        noShowCount += 1
+                    }else if Array(noShow["course\(j)"].string!).count >= 2 {
+                        canNoShowCount += 1
+                    }
+                    print(noShow["course\(j)"].string!)
+                    temp.append(noShow["course\(j)"].string!)
+                }
+                temp.remove(at: 0)
+                self.myNoShow.append(temp)
+            }
+            self.myNoShow.remove(at: 0)
+            self.dataView?.isInit = false
+            self.dataView?.myNoShow = self.myNoShow
+            DispatchQueue.main.async {
+                self.labelOne.text = "曠課節數：\(noShowCount)"
+                self.labelSecond.text = "已請節數：\(canNoShowCount)"
+                self.dataView?.animateTable()
+                self.loadingView.stopAnimating()
+
+            }
+            
         })
         myTask.resume()
     }
@@ -255,54 +255,54 @@ class ShowDataViewController: UIViewController {
                         return
                     }
                 }
-            }else{
-                let myData = JSON(data!)
-                if myData["msg"].string != nil{
-                    self.dismiss(animated: true, completion: nil)
-                    return
-                }
-                if myData["status"].string == "沒有獎懲紀錄"{
-                    DispatchQueue.main.async {
-                        let myAlert = UIAlertController(title: "哎呀！", message: "查不到這學期的獎懲紀錄唷！", preferredStyle: .alert)
-                        myAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-                            _ in
-                            self.navigationController?.popViewController(animated: true)
-                        }))
-                        self.present(myAlert, animated: true, completion: nil)
-                    }
-                }
-                var goodReward = 0
-                var badRewad = 0
-                for (_,noShow):(String,JSON) in myData["value"]{
-                    var temp = [String()]
-                    temp.append(noShow["date"].string!)
-                    temp.append(noShow["count"].string!)
-                    temp.append(noShow["info"].string!)
-                    temp.append(noShow["category"].string!)
-                    temp.remove(at: 0)
-                    if noShow["category"].string!.contains("過") || noShow["category"].string!.contains("申"){
-                        badRewad += 1
-                    }else if noShow["category"].string!.contains("嘉") || noShow["category"].string!.contains("功"){
-                        goodReward += 1
-                    }
-                    self.myReward.append(temp)
-                }
-                self.myReward.remove(at: 0)
-                self.dataView?.isInit = false
-                self.dataView?.myReward = self.myReward
+            }
+            let myData = JSON(data!)
+            if myData["msg"].string != nil{
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+            if myData["status"].string == "沒有獎懲紀錄"{
                 DispatchQueue.main.async {
-                    if badRewad > 0 {
-                        self.labelOne.text = "哎呀，好像有被記過了，趕快確認一下吧"
-                    }else if goodReward > 0{
-                        self.labelOne.text = "哎唷！這學期有被記功唷！"
-                    }
-                    self.labelSecond.isHidden = true
-                    self.labelThird.isHidden = true
-                    self.dataView?.animateTable()
-                    self.loadingView.stopAnimating()
-
+                    let myAlert = UIAlertController(title: "哎呀！", message: "查不到這學期的獎懲紀錄唷！", preferredStyle: .alert)
+                    myAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        _ in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(myAlert, animated: true, completion: nil)
                 }
             }
+            var goodReward = 0
+            var badRewad = 0
+            for (_,noShow):(String,JSON) in myData["value"]{
+                var temp = [String()]
+                temp.append(noShow["date"].string!)
+                temp.append(noShow["count"].string!)
+                temp.append(noShow["info"].string!)
+                temp.append(noShow["category"].string!)
+                temp.remove(at: 0)
+                if noShow["category"].string!.contains("過") || noShow["category"].string!.contains("申"){
+                    badRewad += 1
+                }else if noShow["category"].string!.contains("嘉") || noShow["category"].string!.contains("功"){
+                    goodReward += 1
+                }
+                self.myReward.append(temp)
+            }
+            self.myReward.remove(at: 0)
+            self.dataView?.isInit = false
+            self.dataView?.myReward = self.myReward
+            DispatchQueue.main.async {
+                if badRewad > 0 {
+                    self.labelOne.text = "哎呀，好像有被記過了，趕快確認一下吧"
+                }else if goodReward > 0{
+                    self.labelOne.text = "哎唷！這學期有被記功唷！"
+                }
+                self.labelSecond.isHidden = true
+                self.labelThird.isHidden = true
+                self.dataView?.animateTable()
+                self.loadingView.stopAnimating()
+
+            }
+            
         })
         myTask.resume()
     }

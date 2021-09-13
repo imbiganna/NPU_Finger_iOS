@@ -729,7 +729,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="聯絡作者" footerTitle="澎科一指通 Ver 1.1.0" id="Hek-vt-lDM">
+                            <tableViewSection headerTitle="聯絡作者" footerTitle="澎科一指通 Ver 1.2.1" id="Hek-vt-lDM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jtw-pc-hPp">
                                         <rect key="frame" x="16" y="193.33333587646484" width="343" height="43.666667938232422"/>

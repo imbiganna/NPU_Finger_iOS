@@ -135,6 +135,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 self.myUser.grade = myData["grade"].string!
                 self.myUser.name = myData["name"].string!
                 self.myUser.stdid = myData["stdid"].string!
+                self.myUser.stdType = myData["type"].string!
                 DispatchQueue.main.async {
                     UserDefaults.standard.setValue(self.uidTextField.text!, forKey: "uid")
                     UserDefaults.standard.setValue(self.pwdTextField.text!, forKey: "pwd")
