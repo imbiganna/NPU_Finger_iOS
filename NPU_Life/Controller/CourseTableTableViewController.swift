@@ -20,6 +20,8 @@ class CourseTableTableViewController: UITableViewController {
     var myTag = 0
     var haveSat:String = "False"
     var isNight:String = "False"
+    var superUIView:CourseTableViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layer.cornerRadius = 20
@@ -58,6 +60,7 @@ class CourseTableTableViewController: UITableViewController {
             return cell
         }else if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CourseTitleCell", for: indexPath) as! CourseTableViewCell
+            cell.superVC = self
             for label in cell.WeekNameCollection ?? []{
                 if haveSat == "false"{
                     if label.tag == 6{
@@ -110,7 +113,6 @@ class CourseTableTableViewController: UITableViewController {
         self.tableView.reloadData()
         let cells = tableView.visibleCells
         let tableHeight = tableView.bounds.size.height
-        print(self.height)
         
         cells.forEach {
             $0.transform = CGAffineTransform(translationX: 0, y: tableHeight)

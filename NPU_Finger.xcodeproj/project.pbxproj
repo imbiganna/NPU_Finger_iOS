@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		51B5B93BD1A7AD2588AF3D23 /* Pods_NPU_Finger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137560DB044E360C2450178E /* Pods_NPU_Finger.framework */; };
+		D218326E26FDB11C00020B87 /* CourseAlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D218326D26FDB11C00020B87 /* CourseAlertTableViewController.swift */; };
+		D218327026FDF7E200020B87 /* CourseAlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D218326F26FDF7E200020B87 /* CourseAlertTableViewCell.swift */; };
 		D232D7AE26B7C08600864D58 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */; };
 		D232D7B026B7C0C600864D58 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */; };
 		D232D7B226B7CF7E00864D58 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232D7B126B7CF7E00864D58 /* Calendar.swift */; };
@@ -41,6 +43,9 @@
 		D2B741C426CA55A500103511 /* GreaduateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B741C326CA55A500103511 /* GreaduateViewController.swift */; };
 		D2BD8E2D26A9C453006BC0E9 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */; };
 		D2F0174026C267FD008748E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */; };
+		D2F442AC26F9B25000D51A23 /* CourseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F442AB26F9B25000D51A23 /* CourseAlert.swift */; };
+		D2F442AE26F9BE8900D51A23 /* DevPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F442AD26F9BE8900D51A23 /* DevPageViewController.swift */; };
+		D2F442B026F9C70900D51A23 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F442AF26F9C70900D51A23 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,8 @@
 		6718842B19414B85EC2EA849 /* Pods-NPU_Finger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.release.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.release.xcconfig"; sourceTree = "<group>"; };
 		68192D11FD2AA90F74265059 /* Pods-NPU_Finger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Finger.debug.xcconfig"; path = "Target Support Files/Pods-NPU_Finger/Pods-NPU_Finger.debug.xcconfig"; sourceTree = "<group>"; };
 		6B883B1E7EBE4349155856F7 /* Pods-NPU_Life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPU_Life.release.xcconfig"; path = "Target Support Files/Pods-NPU_Life/Pods-NPU_Life.release.xcconfig"; sourceTree = "<group>"; };
+		D218326D26FDB11C00020B87 /* CourseAlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAlertTableViewController.swift; sourceTree = "<group>"; };
+		D218326F26FDF7E200020B87 /* CourseAlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAlertTableViewCell.swift; sourceTree = "<group>"; };
 		D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		D232D7AF26B7C0C600864D58 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		D232D7B126B7CF7E00864D58 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
@@ -84,6 +91,9 @@
 		D2B741C326CA55A500103511 /* GreaduateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaduateViewController.swift; sourceTree = "<group>"; };
 		D2BD8E2C26A9C453006BC0E9 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		D2F0173F26C267FD008748E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2F442AB26F9B25000D51A23 /* CourseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAlert.swift; sourceTree = "<group>"; };
+		D2F442AD26F9BE8900D51A23 /* DevPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPageViewController.swift; sourceTree = "<group>"; };
+		D2F442AF26F9C70900D51A23 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +181,7 @@
 				D29AC20926AFF2BC00FDDA66 /* LoadingTableViewCell.swift */,
 				D29AC21126B137D600FDDA66 /* newNewsTableViewCell.swift */,
 				D232D7AD26B7C08600864D58 /* CalendarTableViewCell.swift */,
+				D218326F26FDF7E200020B87 /* CourseAlertTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +200,8 @@
 				D238297526BC31A9001D7FA1 /* ShowDataViewController.swift */,
 				D238297726BC3221001D7FA1 /* ShowDataTableViewController.swift */,
 				D2B741C326CA55A500103511 /* GreaduateViewController.swift */,
+				D2F442AD26F9BE8900D51A23 /* DevPageViewController.swift */,
+				D218326D26FDB11C00020B87 /* CourseAlertTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,6 +217,8 @@
 				D232D7B126B7CF7E00864D58 /* Calendar.swift */,
 				D232D7B326B7F19500864D58 /* LoadingImages.swift */,
 				D238297926BD08E2001D7FA1 /* DataType.swift */,
+				D2F442AB26F9B25000D51A23 /* CourseAlert.swift */,
+				D2F442AF26F9C70900D51A23 /* Weather.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,12 +341,15 @@
 				D29AC21426B26D3A00FDDA66 /* Course.swift in Sources */,
 				D2628E9B26A92F9600068E86 /* DashBoardViewController.swift in Sources */,
 				D266243426AEA18800C6E195 /* CourseNameTableViewCell.swift in Sources */,
+				D2F442AC26F9B25000D51A23 /* CourseAlert.swift in Sources */,
 				D238297826BC3221001D7FA1 /* ShowDataTableViewController.swift in Sources */,
 				D2628E8426A6A36900068E86 /* LoginViewController.swift in Sources */,
 				D2B741C426CA55A500103511 /* GreaduateViewController.swift in Sources */,
+				D2F442AE26F9BE8900D51A23 /* DevPageViewController.swift in Sources */,
 				D238297A26BD08E2001D7FA1 /* DataType.swift in Sources */,
 				D266243226ADB43800C6E195 /* CourseTableViewCell.swift in Sources */,
 				D232D7AE26B7C08600864D58 /* CalendarTableViewCell.swift in Sources */,
+				D218327026FDF7E200020B87 /* CourseAlertTableViewCell.swift in Sources */,
 				D2711BDC26B3E7FF0016F860 /* CalendarViewController.swift in Sources */,
 				D238297626BC31A9001D7FA1 /* ShowDataViewController.swift in Sources */,
 				D2758ECF26ABFB2A008BD9EB /* ScoreTableViewCell.swift in Sources */,
@@ -345,7 +363,9 @@
 				D29AC21226B137D600FDDA66 /* newNewsTableViewCell.swift in Sources */,
 				D2392F6626AAB4C700B2C222 /* Settings.swift in Sources */,
 				D29AC20C26B1255C00FDDA66 /* RewardTableViewCell.swift in Sources */,
+				D2F442B026F9C70900D51A23 /* Weather.swift in Sources */,
 				D2392F6226AAAB5300B2C222 /* SettingsTableViewController.swift in Sources */,
+				D218326E26FDB11C00020B87 /* CourseAlertTableViewController.swift in Sources */,
 				D2628E8226A6A36900068E86 /* SceneDelegate.swift in Sources */,
 				D266242E26ADB3BA00C6E195 /* CourseTableViewController.swift in Sources */,
 				D29AC21026B1376B00FDDA66 /* newNewsTableViewController.swift in Sources */,
@@ -501,7 +521,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NPU_Finger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F2H2EXVTW5;
 				INFOPLIST_FILE = NPU_Life/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -509,7 +529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -526,7 +546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NPU_Finger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F2H2EXVTW5;
 				INFOPLIST_FILE = NPU_Life/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -534,7 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biganna.npuonefinger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

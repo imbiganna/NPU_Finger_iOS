@@ -203,7 +203,6 @@ class ShowDataViewController: UIViewController {
                     }else if Array(noShow["course\(j)"].string!).count >= 2 {
                         canNoShowCount += 1
                     }
-                    print(noShow["course\(j)"].string!)
                     temp.append(noShow["course\(j)"].string!)
                 }
                 temp.remove(at: 0)

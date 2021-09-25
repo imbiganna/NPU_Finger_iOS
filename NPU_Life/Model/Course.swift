@@ -13,4 +13,5 @@ class Course{
     var courseRoom:String?
     var courseTeacher:String?
     var tag:Int?
+    var courseTime:String = ""
 }

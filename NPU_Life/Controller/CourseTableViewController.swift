@@ -12,42 +12,45 @@ class CourseTableViewController: UIViewController {
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     var user = User()
-    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UIView!
     @IBOutlet weak var backview: UIView!
     let weekName = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-    
     var courseView:CourseTableTableViewController?
-    
+    var setAlertView:CourseAlertTableViewController?
+    var alertList:[CourseAlert] = [CourseAlert]()
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.courseView?.user = self.user
-        self.title = "查課表"
-        shareButton.tintColor = .white
+    override func viewWillAppear(_ animated: Bool) {
         let barAppearance =  UINavigationBarAppearance()
         barAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         barAppearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = barAppearance
-        print(self.user.stdType)
-        getCourse()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.courseView?.user = self.user
+        self.setAlertView?.alertList = self.alertList
+        self.title = "查課表"
         
+        courseView?.superUIView = self
+        getCourse()
     }
     
-    @IBAction func shareTable(_ sender: UIBarButtonItem) {
+    @IBAction func settingAlert(_ sender: UIButton) {
+        performSegue(withIdentifier: "setAlert", sender: nil)
+    }
+    
+
+    
+    func shareCourse(){
         let renderer = UIGraphicsImageRenderer(size: tableView.frame.size)
         let image = renderer.image(actions: { (context) in
             tableView.drawHierarchy(in: tableView.bounds, afterScreenUpdates: true)
         })
-        
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
-    
     }
-    
     
     func getCourse(){
         self.loadingView.startAnimating()
@@ -148,8 +151,17 @@ class CourseTableViewController: UIViewController {
                 self.user.course.remove(at: 0)
                 self.courseView?.isInit = false
                 self.user.haveSat = myData["haveSatDay"].string!
-                
+                for (_,timeTable):(String,JSON) in myData["timeList"]{
+                    let tempTimeList = CourseAlert(Name: timeTable["courseName"].string!, Time: timeTable["courseTime"].string!, Room: timeTable["room"].string!)
+
+                    self.alertList.append(tempTimeList)
+                }
             }else{
+                for (_,timeTable):(String,JSON) in myData["timeList"]{
+                    let tempTimeList = CourseAlert(Name: timeTable["courseName"].string!, Time: timeTable["courseTime"].string!, Room: timeTable["room"].string!)
+                    
+                    self.alertList.append(tempTimeList)
+                }
                 self.courseView?.isInit = false
             }
             self.courseView?.getColor()
@@ -176,6 +188,10 @@ class CourseTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "courseTableDetail"{
             courseView = segue.destination as? CourseTableTableViewController
+        }else if segue.identifier == "setAlert"{
+            setAlertView = segue.destination as? CourseAlertTableViewController
+            setAlertView?.alertList = self.alertList
+            setAlertView?.stdType = self.user.stdType
         }
     }
 

@@ -125,7 +125,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
                 return
             }else{
                 let myData = JSON(data!)

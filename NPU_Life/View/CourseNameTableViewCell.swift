@@ -20,6 +20,7 @@ class CourseNameTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+
     @IBAction func anyCourse(_ sender: UIButton) {
         for course in myUser.course{
             for myCourse in course{
@@ -38,13 +39,12 @@ class CourseNameTableViewCell: UITableViewCell {
     func alertCourse(CourseName name:String ,CourseRoom room:String , Teacher teacher:String){
         let myAlert = UIAlertController(title: "科目名稱：\(name)", message: "👨🏻‍🏫授課老師：\(teacher) 老師\n⛪️上課教室：\(room)", preferredStyle: .alert)
         myAlert.addAction(UIAlertAction(title: "好！", style: .default, handler: nil))
+        myAlert.addAction(UIAlertAction(title: "提醒我要上課！", style: .default, handler: {_ in }))
         superVC?.present(myAlert, animated: true, completion: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

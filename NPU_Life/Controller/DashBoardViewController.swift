@@ -17,7 +17,15 @@ class DashBoardViewController: UIViewController {
     var loadSettings = newSettings()
     var dataView : ShowDataViewController?
     var dataType:DataType?
+    var nowWeather:Weather = Weather()
+    var timer = Timer()
+    let formatter = DateFormatter()
+
+    var todayDate:String = ""
+    var nowTime:Int = 0
     @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var stdidLabel: UILabel!
@@ -40,8 +48,13 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getWeather()
         let pressGesture = UILongPressGestureRecognizer(target: self, action: #selector(changePhoto))
         self.imageButton.addGestureRecognizer(pressGesture)
+        formatter.dateFormat = "yyyy-MM-dd"
+        todayDate = formatter.string(from: Date())
+        formatter.dateFormat = "HH"
+        nowTime = Int(formatter.string(from: Date()))!
         let settingImage = UIImage(named: "SETTINGIMG")!.withRenderingMode(.alwaysTemplate)
         settingButton.setImage(settingImage, for: .normal)
         settingButton.tintColor = .white
@@ -62,12 +75,15 @@ class DashBoardViewController: UIViewController {
                 })
                 localAuthAlert.addAction(UIAlertAction(title: "不要！", style: .destructive, handler: {
                     _ in
-                    self.loadSettings.updateSetting(LOCALAUTH: false, AUTOUPDATE: self.loadSettings.AUTO_UPDATE)
+                    self.loadSettings.updateSetting(LOCALAUTH: false, AUTOUPDATE: self.loadSettings.AUTO_UPDATE,DASHBOARD_WEATHER: self.loadSettings.DASHBOARD_WEATHER)
                 }))
                 localAuthAlert.addAction(okAction)
                 DispatchQueue.main.async {
                     self.present(localAuthAlert, animated: true, completion: nil)
                 }
+            }else if UserDefaults.standard.object(forKey: "UPDATE1.3") == nil{
+                self.showMessage(title: "本次更新內容！", message: "可以開啟課程提醒了\n支援iPhone13系列\n對iOS15做了優化\n新增天氣預報功能")
+                UserDefaults.standard.set("updated", forKey: "UPDATE1.3")
             }
             if UserDefaults.standard.object(forKey: "profile\(self.user.stdid)") != nil{
                 let profilePhoto = (UserDefaults.standard.object(forKey: "profile\(self.user.stdid)") as? Data)!
@@ -75,11 +91,39 @@ class DashBoardViewController: UIViewController {
                 self.imageButton.setImage(mySaveImage, for: .normal)
             }
         }
+        if loadSettings.DASHBOARD_WEATHER {
+            imageButton.isHidden = true
+            weatherIcon.isHidden = false
+            weatherLabel.isHidden = false
+        }else{
+            weatherIcon.isHidden = true
+            weatherLabel.isHidden = true
+            imageButton.isHidden = false
+        }
         
         if let AUTOUPDATE = UserDefaults.standard.object(forKey: "AUTO_UPDATE") as? Bool{
             if AUTOUPDATE == true {
                 checkUpdate()
             }
+        }
+    }
+    
+    @objc
+    func changeWeatherSts(){
+        switch self.nowWeather.times{
+        case 1:
+            self.nowWeather.times = 2
+            self.weatherLabel.text = "\(self.nowWeather.nowDescri)"
+            break
+        case 2:
+            self.nowWeather.times = 3
+            self.weatherLabel.text = "平均溫度\(self.nowWeather.avgTemp)度"
+            break
+        case 3:
+            self.nowWeather.times = 1
+            self.weatherLabel.text = "降雨機率\(self.nowWeather.rainPer)%"
+        default:
+            return
         }
     }
     
@@ -102,22 +146,42 @@ class DashBoardViewController: UIViewController {
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
+                }
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: errorMsg)
+                }
                 return
-            }else{
-                let myData = JSON(data!)
-                if myData["iOS"].string! != "1.21" && myData["iOS"].string! != "1.2"{
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
                     DispatchQueue.main.async {
-                        let updateAlert = UIAlertController(title: "發現新版本！", message: "檢查到新版本！要立即前往更新嗎？", preferredStyle: .alert)
-                        updateAlert.addAction(UIAlertAction(title: "好阿！", style: .default, handler: {
-                            _ in
-                            let updateURL = URL(string: myData["URL"].string!)!
-                            UIApplication.shared.open(updateURL)
-                        }))
-                        updateAlert.addAction(UIAlertAction(title: "先不要", style: .cancel, handler: nil))
-                        self.present(updateAlert, animated: true, completion: nil)
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n沒有辦法檢查更新\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        return
                     }
                 }
             }
+            let myData = JSON(data!)
+            if myData["iOS"].string! != "1.3" && myData["iOS"].string! != "1.21"{
+                DispatchQueue.main.async {
+                    let updateAlert = UIAlertController(title: "發現新版本！", message: "檢查到新版本！要立即前往更新嗎？", preferredStyle: .alert)
+                    updateAlert.addAction(UIAlertAction(title: "好阿！", style: .default, handler: {
+                        _ in
+                        let updateURL = URL(string: myData["URL"].string!)!
+                        UIApplication.shared.open(updateURL)
+                    }))
+                    updateAlert.addAction(UIAlertAction(title: "先不要", style: .cancel, handler: nil))
+                    self.present(updateAlert, animated: true, completion: nil)
+                }
+            }
+            
         })
         myTask.resume()
         
@@ -217,7 +281,7 @@ class DashBoardViewController: UIViewController {
                 if success {
                     DispatchQueue.main.async { [unowned self] in
                         showMessage(title: "辨識成功！", message: "已成功啟用快速登入！")
-                        loadSettings.updateSetting(LOCALAUTH: true, AUTOUPDATE: self.loadSettings.AUTO_UPDATE)
+                        loadSettings.updateSetting(LOCALAUTH: true, AUTOUPDATE: self.loadSettings.AUTO_UPDATE,DASHBOARD_WEATHER:  self.loadSettings.DASHBOARD_WEATHER)
                     }
                 } else {
                     self.showMessage(title: "失敗", message: "辨識失敗！可稍後於設定啟用")
@@ -247,6 +311,67 @@ class DashBoardViewController: UIViewController {
         navigationItem.backBarButtonItem = backItem
     }
     
+    func getWeather(){
+        let url = URL(string:"https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-047?Authorization=CWB-F65EF798-C1B9-4E6A-9192-59B1D77691CC&limit=1&offset=0&format=JSON&locationName=%E9%A6%AC%E5%85%AC%E5%B8%82&elementName=PoP12h&elementName=T,Wx&timeFrom=\(todayDate)T00%3A00%3A00&timeTo=\(todayDate)T24%3A00%3A00")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let newURL = URLSession(configuration: .default)
+        let myTask = newURL.dataTask(with: request, completionHandler: {
+            (data,respond,error) in
+            if error != nil {
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
+                }
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀！", message: errorMsg)
+                }
+                return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n沒有辦法取得天氣資訊\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        return
+                    }
+                }
+            }
+            let myData = JSON(data!)
+            if myData["success"].string! == "true"{
+                var dayNight = 0
+                var dayString = "D"
+                if self.nowTime >= 18{
+                    dayString = "N"
+                    dayNight = 1
+                }
+                self.nowWeather.avgTemp = myData["records"]["locations"][0]["location"][0]["weatherElement"][1]["time"][dayNight]["elementValue"][0]["value"].string!
+                self.nowWeather.nowDescri = myData["records"]["locations"][0]["location"][0]["weatherElement"][2]["time"][dayNight]["elementValue"][0]["value"].string!
+                self.nowWeather.wxNum = myData["records"]["locations"][0]["location"][0]["weatherElement"][2]["time"][dayNight]["elementValue"][1]["value"].string!
+                self.nowWeather.rainPer = myData["records"]["locations"][0]["location"][0]["weatherElement"][0]["time"][dayNight]["elementValue"][0]["value"].string!
+                DispatchQueue.main.async {
+                    self.changeImage(dayNight:dayString)
+                    self.changeWeatherSts()
+                    self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.changeWeatherSts), userInfo: nil, repeats: true)
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.showMessage(title: "哎呀", message: "氣象居資料串接出了點問題，請稍後再試！")
+                }
+            }
+            
+        })
+        myTask.resume()
+    }
+    
+    func changeImage(dayNight:String){
+        self.weatherIcon.image = UIImage(named: "\(dayNight)\(self.nowWeather.wxNum)")
+    }
 }
 
 extension DashBoardViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
@@ -317,3 +442,4 @@ extension DashBoardViewController : UIImagePickerControllerDelegate , UINavigati
         }
     }
 }
+
