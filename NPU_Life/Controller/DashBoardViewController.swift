@@ -16,6 +16,7 @@ class DashBoardViewController: UIViewController {
     var user = User()
     var loadSettings = newSettings()
     var dataView : ShowDataViewController?
+    var newsView : newNewsTableViewController?
     var dataType:DataType?
     var nowWeather:Weather = Weather()
     var timer = Timer()
@@ -48,6 +49,7 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newsView?.dashVC = self
         self.getWeather()
         let pressGesture = UILongPressGestureRecognizer(target: self, action: #selector(changePhoto))
         self.imageButton.addGestureRecognizer(pressGesture)
@@ -169,7 +171,7 @@ class DashBoardViewController: UIViewController {
                 }
             }
             let myData = JSON(data!)
-            if myData["iOS"].string! != "1.3" && myData["iOS"].string! != "1.21"{
+            if myData["iOS"].string! != "1.3.1" && myData["iOS"].string! != "1.4.0"{
                 DispatchQueue.main.async {
                     let updateAlert = UIAlertController(title: "發現新版本！", message: "檢查到新版本！要立即前往更新嗎？", preferredStyle: .alert)
                     updateAlert.addAction(UIAlertAction(title: "好阿！", style: .default, handler: {
@@ -380,12 +382,6 @@ extension DashBoardViewController : UIImagePickerControllerDelegate , UINavigati
         checkAuth()
     }
     
-    func takePhoto(){
-        let controller = UIImagePickerController()
-        controller.sourceType = .camera
-        controller.delegate = self
-
-    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let myImage = info[.editedImage] as? UIImage
         let imageData = myImage?.jpegData(compressionQuality: 1.0)
@@ -420,7 +416,23 @@ extension DashBoardViewController : UIImagePickerControllerDelegate , UINavigati
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({
                 (statusFirst) in
-                self.selectPhoto()
+                switch statusFirst {
+                case .denied:
+                    let alertController = UIAlertController(title: "哎呀！", message: "你好像沒有允許使用相簿耶\n要去設定允許嗎？", preferredStyle: .alert)
+                    let settingAction = UIAlertAction(title: "好阿", style: .default, handler: { (action) in
+                        let url = URL(string: UIApplication.openSettingsURLString)
+                            if let url = url, UIApplication.shared.canOpenURL(url) {
+                                UIApplication.shared.open(url)
+                            }
+                    })
+                    alertController.addAction(UIAlertAction(title: "先不要", style: .cancel, handler: nil))
+                    alertController.addAction(settingAction)
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                default:
+                    return
+                }
             })
         case .authorized:
             let controller = UIImagePickerController()

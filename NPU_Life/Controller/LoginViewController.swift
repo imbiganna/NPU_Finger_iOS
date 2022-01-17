@@ -61,7 +61,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             loadingView.startAnimating()
             myUser.pwd = self.pwdTextField.text!
             let myUid = uidTextField.text!
-
             let myPwd = pwdTextField.text!
             getToken(userID: myUid, userPWD: myPwd)
         }
@@ -73,6 +72,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = postUser.data(using: String.Encoding.utf8)
+        
         let newURL = URLSession(configuration: .default)
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 var errorMsg = ""
                 switch myErrorCode {
                 case -1009:
-                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                    errorMsg = "你好像沒有網路連線耶！\n要不要再檢查看看呢"
                 case -1004:
                     errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
                 default:
@@ -142,7 +142,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     self.performSegue(withIdentifier: "goDashboard", sender: nil)
                     self.myUser = User()
                     self.loadingView.stopAnimating()
-                    
                 }
             }
         })

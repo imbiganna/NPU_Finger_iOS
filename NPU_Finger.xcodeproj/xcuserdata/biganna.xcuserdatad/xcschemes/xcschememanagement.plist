@@ -4,10 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>NPU_Finger.xcscheme_^#shared#^_</key>
+		<key>NPUFIngerClips.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>16</integer>
+		</dict>
+		<key>NPU_Finger.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 		<key>NPU_Life.xcscheme_^#shared#^_</key>
 		<dict>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D25289D82721880600230DF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D2628E7B26A6A36900068E86</key>
 		<dict>
 			<key>primary</key>

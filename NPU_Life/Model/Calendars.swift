@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Calendar{
+class Calendars{
     var startTime:String = ""
     var endTime:String = ""
     var eventName:String = ""

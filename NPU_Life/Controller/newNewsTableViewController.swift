@@ -15,6 +15,7 @@ class newNewsTableViewController: UITableViewController {
     var newsTeamArray = [String]()
     var newsURL = [String]()
     var isInit = true
+    var dashVC:DashBoardViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,6 @@ class newNewsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         if isInit{
             return 1
-            
         }else {
             return newsTitleArray.count
         }
@@ -40,7 +40,6 @@ class newNewsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if isInit{
             let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
             return cell
@@ -75,25 +74,42 @@ class newNewsTableViewController: UITableViewController {
         let url = URL(string:"https://app.npu.edu.tw/api/newsList")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         let newURL = URLSession(configuration: .default)
         let myTask = newURL.dataTask(with: request, completionHandler: {
             (data,respond,error) in
             if error != nil {
-                print(error!.localizedDescription)
-                return
-            }else{
-                let myData = JSON(data!)
-                for (_,news):(String,JSON) in myData{
-                    self.newsTitleArray.append(news["newsTitle"].string!)
-                    self.newsDateArray.append(news["newsDate"].string!)
-                    self.newsTeamArray.append(news["newsTeam"].string!)
-                    self.newsURL.append(news["newsURL"].string!)
+                let myErrorCode = (error! as NSError).code
+                var errorMsg = ""
+                switch myErrorCode {
+                case -1009:
+                    errorMsg = "你好想沒有網路連線耶！\n要不要再檢查看看呢"
+                case -1004:
+                    errorMsg = "登入伺服器出了點問題！\n稍後再試試看\n選課期間異常是正常現象唷"
+                default:
+                    errorMsg = "出了點未知錯誤，請聯繫作者回報，謝謝您!"
                 }
                 DispatchQueue.main.async {
-                    self.isInit = false
-                    self.animateTable()
+                    self.dashVC?.showMessage(title: "哎呀！", message: errorMsg)
                 }
+                return
+            }else if let response = respond as? HTTPURLResponse{
+                if response.statusCode == 500{
+                    DispatchQueue.main.async {
+                        self.dashVC?.showMessage(title: "哎呀❗️", message: "系統出了點問題！\n沒有辦法取得資料\n若一直無法正常運作請聯絡作者\n謝謝您！")
+                        return
+                    }
+                }
+            }
+            let myData = JSON(data!)
+            for (_,news):(String,JSON) in myData{
+                self.newsTitleArray.append(news["newsTitle"].string!)
+                self.newsDateArray.append(news["newsDate"].string!)
+                self.newsTeamArray.append(news["newsTeam"].string!)
+                self.newsURL.append(news["newsURL"].string!)
+            }
+            DispatchQueue.main.async {
+                self.isInit = false
+                self.animateTable()
             }
         })
         myTask.resume()

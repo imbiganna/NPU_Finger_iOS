@@ -12,3 +12,10 @@ target 'NPU_Finger' do
   pod 'Firebase/Messaging'
 
 end
+target 'NPUFIngerClips' do
+  
+  use_modular_headers!
+
+  pod 'SwiftyJSON', '~> 4.0'
+
+end

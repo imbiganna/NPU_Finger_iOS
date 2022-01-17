@@ -11,7 +11,6 @@ class newSettings{
     var LOCAL_AUTH:Bool?
     var AUTO_UPDATE:Bool = true
     var DASHBOARD_WEATHER:Bool = false
-    
     func updateSetting (LOCALAUTH:Bool , AUTOUPDATE:Bool, DASHBOARD_WEATHER:Bool){
         self.LOCAL_AUTH = LOCALAUTH
         self.AUTO_UPDATE = AUTOUPDATE
@@ -19,7 +18,6 @@ class newSettings{
         UserDefaults.standard.setValue(LOCALAUTH, forKey: "LOCAL_AUTH_ON")
         UserDefaults.standard.setValue(AUTOUPDATE, forKey: "AUTO_UPDATE")
         UserDefaults.standard.setValue(DASHBOARD_WEATHER, forKey: "DASHBOARD_WEATHER")
-        
     }
     
     init(){

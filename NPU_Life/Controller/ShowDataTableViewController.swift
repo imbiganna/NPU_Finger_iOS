@@ -67,7 +67,13 @@ class ShowDataTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "NoShowCell", for: indexPath) as! NoShowTableViewCell
                     let needPrint = ["日期","1","2","3","4","5","6","7","8"]
                     for myLabel in cell.labelCollection{
-                        myLabel.text = needPrint[myLabel.tag]
+                        var showLabel:String = ""
+                        switch needPrint[myLabel.tag]{
+                            case "缺曠" : showLabel = "缺"
+                            case "疫苗假" : showLabel = "疫"
+                            default : showLabel = needPrint[myLabel.tag]
+                        }
+                        myLabel.text = showLabel
                         myLabel.font.withSize(20)
                     }
                     return cell

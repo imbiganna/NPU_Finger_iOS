@@ -17,6 +17,7 @@ class DevPageViewController: UIViewController {
     }
     
     @IBAction func testButton(_ sender: UIButton) {
+        /*
         let content = UNMutableNotificationContent()
         content.title = "上課提醒"
         content.subtitle = "課程名稱：網路程式設計"
@@ -34,6 +35,12 @@ class DevPageViewController: UIViewController {
         UNUserNotificationCenter.current().add(request, withCompletionHandler:{ _ in
             DispatchQueue.main.async {
                 self.showMessage(title: "新增通知成功", msg: "成功")
+            }
+        })*/
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                print(request)
             }
         })
         
